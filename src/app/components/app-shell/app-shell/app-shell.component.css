@@ -1,0 +1,46 @@
+.uv-sidenav-container {
+    width: 100%;
+    height: 100%;
+}
+
+.uv-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #F8FAFB;
+}
+
+/* Activated Route Nav Styles */
+
+.mat-list-item.active-link mat-icon, .mat-list-item.active-link .sidenav-navlink-text {
+    color: white;
+}
+
+.mat-list-item.active-link {
+    background-color: powderblue;
+}
+
+/* Brand header */
+
+.uv-brand {
+    padding-left: 50px;
+    height: 64px;
+}
+
+.uv-brand span {
+    font-weight: bold;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.uv-brand img {
+    width: 45px;
+}
+
+/* for large screens */
+
+@media only screen and (min-width: 1500px) {
+    #side-nav {
+        min-width: 15vw;
+    }
+}
