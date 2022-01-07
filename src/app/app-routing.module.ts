@@ -21,21 +21,9 @@ const routes: Routes = [
     path: '',
     component: AppShellComponent,
     children: [
-      {
-        path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
-      },
-      {
-        path: 'products',
-        loadChildren: () => import('./products/products.module').then(m => m.ProductsModule),
-      }
+    
     ]
   },
-  {
-    path: '**',
-    redirectTo: '/products',
-    pathMatch: 'full',
-  }
 ];
 
 @NgModule({
