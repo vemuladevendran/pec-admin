@@ -14,13 +14,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class AppShellComponent implements OnInit, OnDestroy {
   menuItems = [
     // ['home', 'Home', ['/home']],
-    ['dashboard', 'Dashboard', ['/dashboard']],
-    ['apartment', 'Products', ['/products']],
-    ['verified_user', 'Login', ['/login']],
-    ['verified_user', 'Signup', ['/signup']],
-    ['swap_horiz', 'Orders', ['/orders']],
-    ['category', 'Categories', ['/orders']],
-    ['account_circle', 'Users', ['/orders']],
+    ['dashboard', 'Teachers', ['/teachers']],
     ['money', 'Profile', ['/my-profile']],
   ].map(([icon, text, path]) => ({ icon, text, path }));
 
@@ -40,7 +34,7 @@ export class AppShellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.router.url === '/') {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['teachers']);
     }
 
     // this.listenForTitleChanges();
