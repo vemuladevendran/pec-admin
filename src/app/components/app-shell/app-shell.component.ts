@@ -5,6 +5,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/token/token.service';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { menuItems as menuList } from './sidenav-items';
 
 @Component({
   selector: 'app-app-shell',
@@ -12,11 +13,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./app-shell.component.css']
 })
 export class AppShellComponent implements OnInit, OnDestroy {
-  menuItems = [
-    ['dashboard', 'Teachers', ['/teachers']],
-    ['dashboard', 'STUDENT', ['/students']],
-    ['money', 'Profile', ['/my-profile']],
-  ].map(([icon, text, path]) => ({ icon, text, path }));
+  
+  menuItems = menuList;
 
   mobileQuery = this.media.matchMedia('(max-width: 600px)');
   private subscriptions: Subscription[] = [];

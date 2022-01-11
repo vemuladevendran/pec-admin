@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppShellComponent } from './components/app-shell/app-shell/app-shell.component';
+import { AppShellComponent } from './components/app-shell/app-shell.component';
 
 
 const routes: Routes = [
@@ -23,6 +23,7 @@ const routes: Routes = [
     children: [
       { path: 'teachers', loadChildren: () => import('./pages/teachers/teachers.module').then(m => m.TeachersModule) },
       { path: 'students', loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule) },
+      { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
     ]
   },
 ];

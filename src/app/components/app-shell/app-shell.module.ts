@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppShellComponent } from './app-shell/app-shell.component';
+import { AppShellComponent } from './app-shell.component';
 import { RouterModule } from '@angular/router';
 import { TopnavModule } from '../topnav/topnav.module';
 import { MatIconModule } from '@angular/material/icon';
