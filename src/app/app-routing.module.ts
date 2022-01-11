@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'students', loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule) },
       { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
       { path: 'department', loadChildren: () => import('./pages/department/department.module').then(m => m.DepartmentModule) },
+      { path: 'attendance-report', loadChildren: () => import('./pages/attendance-report/attendance-report.module').then(m => m.AttendanceReportModule) },
     ]
   },
 ];
