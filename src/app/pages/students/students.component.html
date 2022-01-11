@@ -1,1 +1,51 @@
-<p>students works!</p>
+<main class="m-5">
+  <section class="row mb-5">
+    <h2>Filters</h2>
+    <div class="col-lg-3 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let department of departments"
+            [value]="department"
+          >
+            {{ department }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Class</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let department of departments"
+            [value]="department"
+          >
+            {{ department }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Roll No</mat-label>
+        <input matInput placeholder="Roll No" type="text" />
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Name" />
+      </mat-form-field>
+    </div>
+  </section>
+  <section class="row py-3">
+    <div
+      class="col-lg-3 col-sm-6 col-md-4 mb-5"
+      *ngFor="let student of students"
+    >
+      <app-student-card [student]="student"></app-student-card>
+    </div>
+  </section>
+</main>

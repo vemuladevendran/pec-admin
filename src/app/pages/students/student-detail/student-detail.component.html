@@ -1,0 +1,19 @@
+<section class="px-5 text-center">
+  <h2 mat-dialog-title>Student Details</h2>
+
+  <mat-dialog-content>
+    <img
+      src="/assets/default-profile.png"
+      width="90"
+      alt="student-image"
+      class="img-fluid rounded-circle img-thumbnail shadow-md"
+    />
+    <h3 class="fw-bold">{{ data.name }}</h3>
+    <p class="text-muted">{{ data.rollNo }}</p>
+    <p class="text-muted">{{ data.regNo }}</p>
+  </mat-dialog-content>
+
+  <div class="text-center">
+    <button class="btn btn-danger btn-sm" (click)="close()">Close</button>
+  </div>
+</section>

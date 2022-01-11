@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppShellComponent } from './components/app-shell/app-shell.component';
 
-// test commit proto
 const routes: Routes = [
   {
     path: 'login',
