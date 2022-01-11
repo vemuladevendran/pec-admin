@@ -1,1 +1,114 @@
-<p>add-student works!</p>
+<section class="container-fluid">
+  <h2 class="fw-bolder">Add Student</h2>
+
+  <div class="text-center my-4">
+    <img
+      src="/assets/default-profile.png"
+      width="90"
+      alt="student-image"
+      class="img-fluid rounded-circle img-thumbnail shadow-md"
+    />
+    <p class="h6 text-primary text-decoration-underline my-2" role="button">
+      Change Profile Image
+    </p>
+  </div>
+  <form class="row">
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Student Name</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Name" type="text" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Roll No</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Roll No" type="text" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Register No</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Reg No" type="text" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Department</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Department" type="text" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Class</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Class" type="text" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Email</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Email" type="email" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Phone No</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Phone No" type="number" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Year</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Year" type="number" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Semester</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Semester" type="number" required />
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-6 my-2">
+      <label class="orm-label px-1 h6 fw-normal">Address</label>
+      <p>
+        <mat-form-field appearance="fill">
+          <textarea matInput placeholder="Address" required></textarea>
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="d-flex justify-content-end flex-wrap">
+      <div>
+        <a
+          [routerLink]="['/students']"
+          class="btn bg-danger text-white btn-sm me-3 rounded shadow"
+        >
+          <span class="h6">&#10006; </span>
+          Cancel
+        </a>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-sm rounded shadow">
+          <span class="h6">&#43; </span>
+          Add Student
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

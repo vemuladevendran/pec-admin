@@ -1,3 +1,4 @@
+import { AddStudentComponent } from './pages/students/add-student/add-student.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppShellComponent } from './components/app-shell/app-shell.component';
@@ -38,6 +39,11 @@ const routes: Routes = [
             (m) => m.StudentsModule
           ),
       },
+      {
+        path: 'students/add',
+        component: AddStudentComponent,
+      },
+
       {
         path: 'profile',
         loadChildren: () =>
