@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'teachers', loadChildren: () => import('./pages/teachers/teachers.module').then(m => m.TeachersModule) },
       { path: 'students', loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule) },
       { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
+      { path: 'department', loadChildren: () => import('./pages/department/department.module').then(m => m.DepartmentModule) },
     ]
   },
 ];
