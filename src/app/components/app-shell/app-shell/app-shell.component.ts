@@ -13,8 +13,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class AppShellComponent implements OnInit, OnDestroy {
   menuItems = [
-    // ['home', 'Home', ['/home']],
     ['dashboard', 'Teachers', ['/teachers']],
+    ['dashboard', 'STUDENT', ['/students']],
     ['money', 'Profile', ['/my-profile']],
   ].map(([icon, text, path]) => ({ icon, text, path }));
 

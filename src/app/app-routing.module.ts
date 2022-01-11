@@ -22,6 +22,7 @@ const routes: Routes = [
     component: AppShellComponent,
     children: [
       { path: 'teachers', loadChildren: () => import('./pages/teachers/teachers.module').then(m => m.TeachersModule) },
+      { path: 'students', loadChildren: () => import('./pages/students/students.module').then(m => m.StudentsModule) },
     ]
   },
 ];
