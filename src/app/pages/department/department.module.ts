@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddDepartmentComponent } from './add-department/add-department.component';
+import { MatCardModule } from '@angular/material/card';
 
 const materialModules = [
   MatIconModule,
@@ -20,10 +22,12 @@ const materialModules = [
   MatSelectModule,
   MatInputModule,
   MatDialogModule,
+  MatCardModule,
 ]
 @NgModule({
   declarations: [
-    DepartmentComponent
+    DepartmentComponent,
+    AddDepartmentComponent
   ],
   imports: [
     CommonModule,

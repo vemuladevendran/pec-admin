@@ -1,0 +1,223 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- new department form -->
+            <form [formGroup]="createDepartment" (ngSubmit)="handleSubmit()">
+                <h2>Department Details</h2>
+                <!-- department details -->
+                <section class="row">
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Department Name</mat-label>
+                            <input matInput placeholder="Department Name" type="text"
+                                formControlName="departmentName" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Department Code</mat-label>
+                            <input matInput placeholder="Department Code" type="text"
+                                formControlName="departmentCode" />
+                        </mat-form-field>
+                    </div>
+                </section>
+                <section class="row">
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Department Hod</mat-label>
+                            <input matInput placeholder="Department Hod" type="text" formControlName="departmentHOD" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Department Id</mat-label>
+                            <input matInput placeholder="Department Id" type="text" formControlName="departmentId" />
+                        </mat-form-field>
+                    </div>
+                </section>
+                <hr>
+                <h2>Class Details</h2>
+                <hr>
+                <!-- first year -->
+                <mat-card>
+                    <div class="d-flex justify-content-between my-3">
+                        <h2 class="bold">First Year</h2>
+                        <button type="button" class="btn btn-primary btn-sm rounded shadow m-0 text-white"
+                            (click)="addFirstYearSection()">
+                            <span class="h6 pe-1">&#43;</span> Add Section
+                        </button>
+                    </div>
+                    <!-- section details -->
+                    <mat-card formArrayName="firstYear"
+                        *ngFor="let section of firstYearSection?.controls; let i = index;">
+                        <div class="row" [formGroup]="firstYearClass">
+                            <!-- Incharge details -->
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Department Name</mat-label>
+                                    <input matInput readonly placeholder="Department Name" type="text"
+                                        [value]="this.createDepartment.value.departmentName"
+                                        formControlName="departmentName" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Section</mat-label>
+                                    <input matInput readonly placeholder="Section" type="text" [value]="sections[i]"
+                                        formControlName="section" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Class Incharge</mat-label>
+                                    <input matInput placeholder="Class Incharge" type="text"
+                                        formControlName="classIncharge" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-2 text-end" *ngIf="i > 0">
+                                <button type="button" class="btn btn-danger btn-sm rounded shadow m-0 mt-3 text-white"
+                                    (click)="removeFirstYearSection(i)">
+                                    <span class="h6 pe-1">&#43;</span> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </mat-card>
+                <hr>
+                <!-- second year -->
+                <mat-card>
+                    <div class="d-flex justify-content-between my-3">
+                        <h2 class="bold">Second Year</h2>
+                        <button type="button" class="btn btn-primary btn-sm rounded shadow m-0 text-white">
+                            <span class="h6 pe-1">&#43;</span> Add Section
+                        </button>
+                    </div>
+                    <!-- section details -->
+                    <mat-card>
+                        <div class="row">
+                            <!-- Incharge details -->
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Department Name</mat-label>
+                                    <input matInput readonly placeholder="Department Name" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Section</mat-label>
+                                    <input matInput readonly placeholder="Section" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Class Incharge</mat-label>
+                                    <input matInput readonly placeholder="Class Incharge" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-2 text-end">
+                                <button type="button" class="btn btn-danger btn-sm rounded shadow m-0 mt-3 text-white">
+                                    <span class="h6 pe-1">&#43;</span> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </mat-card>
+                <hr>
+                <!-- Third year -->
+                <mat-card>
+                    <div class="d-flex justify-content-between my-3">
+                        <h2 class="bold">Third Year</h2>
+                        <button type="button" class="btn btn-primary btn-sm rounded shadow m-0 text-white">
+                            <span class="h6 pe-1">&#43;</span> Add Section
+                        </button>
+                    </div>
+                    <!-- section details -->
+                    <mat-card>
+                        <div class="row">
+                            <!-- Incharge details -->
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Department Name</mat-label>
+                                    <input matInput readonly placeholder="Department Name" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Section</mat-label>
+                                    <input matInput readonly placeholder="Section" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Class Incharge</mat-label>
+                                    <input matInput readonly placeholder="Class Incharge" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-2 text-end">
+                                <button type="button" class="btn btn-danger btn-sm rounded shadow m-0 mt-3 text-white">
+                                    <span class="h6 pe-1">&#43;</span> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </mat-card>
+                <hr>
+                <!-- Fourth year -->
+                <mat-card>
+                    <div class="d-flex justify-content-between my-3">
+                        <h2 class="bold">Fourth Year</h2>
+                        <button type="button" class="btn btn-primary btn-sm rounded shadow m-0 text-white">
+                            <span class="h6 pe-1">&#43;</span> Add Section
+                        </button>
+                    </div>
+                    <!-- section details -->
+                    <mat-card>
+                        <div class="row">
+                            <!-- Incharge details -->
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Department Name</mat-label>
+                                    <input matInput readonly placeholder="Department Name" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Section</mat-label>
+                                    <input matInput readonly placeholder="Section" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Class Incharge</mat-label>
+                                    <input matInput readonly placeholder="Class Incharge" type="text" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-2 text-end">
+                                <button type="button" class="btn btn-danger btn-sm rounded shadow m-0 mt-3 text-white">
+                                    <span class="h6 pe-1">&#43;</span> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </mat-card>
+
+                <!-- submit button section -->
+
+                <section class="my-4 d-flex justify-content-center">
+                    <div>
+                        <a [routerLink]="['/department']"
+                            class="btn bg-danger text-white btn-sm me-3 rounded shadow py-2">
+                            <span class="h6">&#10006; </span>
+                            Cancel
+                        </a>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-sm rounded shadow py-2">
+                            Create Department
+                        </button>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
