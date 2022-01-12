@@ -12,30 +12,32 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
 import { AddStudentComponent } from './add-student/add-student.component';
-import { ViewStudentComponent } from './view-student/view-student.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+const materialModules = [
+  MatIconModule,
+  MatTooltipModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatInputModule,
+  MatDialogModule,
+]
 
 @NgModule({
   declarations: [
     StudentsComponent,
     AddStudentComponent,
-    ViewStudentComponent,
     StudentCardComponent,
     StudentDetailComponent,
   ],
   imports: [
     CommonModule,
     StudentsRoutingModule,
-    ...[
-      MatIconModule,
-      MatTooltipModule,
-      MatFormFieldModule,
-      MatOptionModule,
-      MatSelectModule,
-      MatInputModule,
-      MatDialogModule,
-    ],
+    ReactiveFormsModule,
+    ...materialModules,
   ],
 })
-export class StudentsModule {}
+export class StudentsModule { }
