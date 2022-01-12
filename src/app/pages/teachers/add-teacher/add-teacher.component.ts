@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-teacher',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTeacherComponent implements OnInit {
 
-  constructor() { }
+  createTeacher: FormGroup
+  constructor(
+    private fb: FormBuilder,
+  ) {
+    this.createTeacher = this.fb.group({
+      teacherName: ['', Validators.required],
+      teacherTitle: ['', Validators.required],
+      teacherId: ['', Validators.required],
+      majorSubject: ['', Validators.required],
+      handlingSubjects: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
   }
