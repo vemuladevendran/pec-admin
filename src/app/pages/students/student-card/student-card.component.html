@@ -1,36 +1,60 @@
 <div
   class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
   role="button"
-  (click)="openDialog()"
 >
-  <div class="position-absolute top-0 start-50 translate-middle">
-    <img
-      src="/assets/default-profile.png"
-      width="90"
-      alt="student-image"
-      class="img-fluid rounded-circle img-thumbnail shadow-md"
-    />
+  <div (click)="openDialog()">
+    <div class="position-absolute top-0 start-50 translate-middle">
+      <img
+        src="/assets/default-profile.png"
+        width="90"
+        alt="student-image"
+        class="img-fluid rounded-circle img-thumbnail shadow-md"
+      />
+    </div>
+    <div class="card-body mt-4 pb-0">
+      <h3 class="card-title fw-bold mb-1 text-wrap text">
+        {{ student?.name }}
+      </h3>
+      <h4 class="card-text mb-2 text-black-60">{{ student?.class }}</h4>
+      <p class="card-text text-muted mb-2" matTooltip="Roll No">
+        {{ student?.rollNo }}
+      </p>
+      <p class="card-text text-muted mb-2" matTooltip="Register No">
+        {{ student?.regNo }}
+      </p>
+    </div>
   </div>
-  <div class="card-body mt-4">
-    <h3 class="card-title fw-bold mb-1 text-wrap text">{{ student?.name }}</h3>
-    <h4 class="card-text mb-2 text-black-60">{{ student?.class }}</h4>
-    <p class="card-text text-muted mb-2" matTooltip="Roll No">
-      {{ student?.rollNo }}
-    </p>
-    <p class="card-text text-muted mb-2" matTooltip="Register No">
-      {{ student?.regNo }}
-    </p>
-    <div class="card-text mb-0 d-flex justify-content-center">
-      <div class="me-3 border rounded-circle edit icon">
-        <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
-          ><a routerLink="/students/add-student">create</a></mat-icon
-        >
-      </div>
-      <div class="border rounded-circle icon delete">
-        <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-          >delete</mat-icon
-        >
-      </div>
+
+  <div class="card-text mb-2 d-flex justify-content-center">
+    <div class="me-3 border rounded-circle edit icon">
+      <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
+        ><a routerLink="/students/add-student">create</a></mat-icon
+      >
+    </div>
+    <div
+      class="border rounded-circle icon delete"
+      (click)="toggleIsDeleteWarning()"
+    >
+      <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+        >delete</mat-icon
+      >
+    </div>
+  </div>
+
+  <!-- DELETE WARNING -->
+  <div
+    class="position-absolute w-100 bottom-0 text-white bg-danger py-2"
+    *ngIf="isDeleteWarning"
+  >
+    <p>Confirm Delete?</p>
+    <div class="d-flex flex-wrap justify-content-center">
+      <button
+        class="btn btn-sm me-2 btn-light"
+        (click)="toggleIsDeleteWarning()"
+      >
+        Cancel
+      </button>
+      <button class="btn btn-sm btn-warning">Delete</button>
     </div>
   </div>
 </div>

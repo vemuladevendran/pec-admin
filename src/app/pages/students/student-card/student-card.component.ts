@@ -9,6 +9,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 })
 export class StudentCardComponent implements OnInit {
   @Input('student') student: any = '';
+  isDeleteWarning: boolean = false;
+
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
@@ -20,5 +22,9 @@ export class StudentCardComponent implements OnInit {
     dialogConfig.data = this.student;
 
     this.dialog.open(StudentDetailComponent, dialogConfig);
+  }
+
+  toggleIsDeleteWarning() {
+    this.isDeleteWarning = !this.isDeleteWarning;
   }
 }
