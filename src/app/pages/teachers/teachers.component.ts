@@ -18,7 +18,8 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  async deleteStudent(): Promise<void> {
+  async deleteStudent(event: any): Promise<void> {
+    event.stopPropagation()
     const result = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
