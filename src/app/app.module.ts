@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppShellModule } from './components/app-shell/app-shell.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // HttpClientModule
 

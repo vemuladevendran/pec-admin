@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-student',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddStudentComponent implements OnInit {
 
-  constructor() { }
+  createStudent: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+  ) {
+    this.createStudent = this.fb.group({
+      studentName: ['', [Validators.required]],
+      rollNumber: ['', [Validators.required]],
+      registerNumber: ['', [Validators.required]],
+      department: ['', [Validators.required]],
+      class: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      semester: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+    })
+  }
 
   ngOnInit(): void {
   }

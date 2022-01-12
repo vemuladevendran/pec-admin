@@ -40,11 +40,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'students/add',
-        component: AddStudentComponent,
-      },
-
-      {
         path: 'profile',
         loadChildren: () =>
           import('./pages/profile/profile.module').then((m) => m.ProfileModule),
@@ -71,4 +66,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

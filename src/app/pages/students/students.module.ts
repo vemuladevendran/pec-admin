@@ -14,7 +14,7 @@ import { StudentsComponent } from './students.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const materialModules = [
   MatIconModule,
