@@ -1,0 +1,55 @@
+<section
+  class="container-fluid d-flex align-items-center justify-content-center"
+>
+  <div class="d-flex flex-wrap">
+    <div class="me-5 d-none d-md-flex">
+      <img src="/assets/login.svg" alt="auth" height="300" />
+    </div>
+    <form
+      class="d-flex flex-column justify-content-center"
+      [formGroup]="loginForm"
+    >
+      <h2 class="fw-bold">LOGIN</h2>
+      <div>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            class="border-0 bg-white"
+            type="button"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <a
+        routerLink="/forgot-password"
+        class="text-end text-muted text-decoration-underline mb-3"
+        >Forgot Password?</a
+      >
+      <button class="w-100 btn btn-primary btn-sm">Login</button>
+    </form>
+  </div>
+</section>
