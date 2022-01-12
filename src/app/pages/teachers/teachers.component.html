@@ -1,66 +1,98 @@
 <div class="container">
-    <!-- head section -->
-    <section class="row">
-        <!-- add btn -->
-        <div class="col-12 text-end">
-            <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="/teachers/add-teacher">
-                <span class="h6 pe-1">&#43;</span> Add Teacher
-            </button>
-        </div>
-        <!-- teacher filters -->
-        <div class="col-12 col-md-4 col-lg-3">
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Department</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let department of departments" [value]="department">
-                        {{ department }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="col-12 col-md-4 col-lg-3">
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Subject</mat-label>
-                <mat-select>
-                    <mat-option> maths </mat-option>
-                    <mat-option> English </mat-option>
-                    <mat-option> Wt </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </section>
-    <!-- list section -->
-    <section class="row">
-        <!-- teacher card -->
+  <!-- head section -->
+  <section class="row">
+    <!-- add btn -->
+    <div
+      class="d-flex justify-content-between flex-wrap align-items-center mb-4"
+    >
+      <h2 class="m-0">Filters</h2>
 
-        <div class="col-12 col-md-4 col-lg-3 px-2 mt-5" *ngFor="let i of [0,0,0,0,0,0,0,0,0,0,0,0,0,0,]">
-            <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform" role="button"
-                (click)="openDialog()">
-                <div class="position-absolute top-0 start-50 translate-middle">
-                    <img src="/assets/default-profile.png" width="90" alt="student-image"
-                        class="img-fluid rounded-circle img-thumbnail shadow-md" />
-                </div>
-                <div class="card-body mt-4">
-                    <h3 class="card-title fw-bold mb-1 text-wrap text">{{ "Teacher Name" }}</h3>
-                    <h4 class="card-text mb-2 text-black-60">{{ "Teacher Title" }}</h4>
-                    <p class="card-text text-muted mb-2">
-                        {{ "Teacher Id" }}
-                    </p>
-                    <p class="card-text text-muted mb-2">
-                        {{ "Major Department" }}
-                    </p>
-                    <div class="card-text mb-0 d-flex justify-content-center">
-                        <div class="me-3 border rounded-circle edit icon">
-                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"><a
-                                    routerLink="/teachers/add-teacher">create</a></mat-icon>
-                        </div>
-                        <div class="border rounded-circle icon delete" (click)="deleteStudent()">
-                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete" >delete</mat-icon>
-                        </div>
-                    </div>
-                </div>
+      <div>
+        <button
+          class="btn btn-primary btn-sm rounded shadow m-0 text-white"
+          routerLink="/teachers/add-teacher"
+        >
+          <span class="h6 pe-1">&#43;</span> Add Teacher
+        </button>
+      </div>
+    </div>
+    <!-- teacher filters -->
+    <div class="col-12 col-md-4 col-lg-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Department</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let department of departments"
+            [value]="department"
+          >
+            {{ department }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-4 col-lg-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Subject</mat-label>
+        <mat-select>
+          <mat-option> maths </mat-option>
+          <mat-option> English </mat-option>
+          <mat-option> Wt </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+  <!-- list section -->
+  <section class="row">
+    <!-- teacher card -->
+
+    <div
+      class="col-12 col-md-4 col-lg-3 px-2 mt-5"
+      *ngFor="let i of [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]"
+    >
+      <div
+        class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
+        role="button"
+        (click)="openDialog()"
+      >
+        <div class="position-absolute top-0 start-50 translate-middle">
+          <img
+            src="/assets/default-profile.png"
+            width="90"
+            alt="student-image"
+            class="img-fluid rounded-circle img-thumbnail shadow-md"
+          />
+        </div>
+        <div class="card-body mt-4">
+          <h3 class="card-title fw-bold mb-1 text-wrap text">
+            {{ "Teacher Name" }}
+          </h3>
+          <h4 class="card-text mb-2 text-black-60">{{ "Teacher Title" }}</h4>
+          <p class="card-text text-muted mb-2">
+            {{ "Teacher Id" }}
+          </p>
+          <p class="card-text text-muted mb-2">
+            {{ "Major Department" }}
+          </p>
+          <div class="card-text mb-0 d-flex justify-content-center">
+            <div class="me-3 border rounded-circle edit icon">
+              <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
+                ><a routerLink="/teachers/add-teacher">create</a></mat-icon
+              >
             </div>
+            <div
+              class="border rounded-circle icon delete"
+              (click)="deleteStudent()"
+            >
+              <mat-icon
+                aria-hidden="false"
+                aria-label="Edit"
+                matTooltip="Delete"
+                >delete</mat-icon
+              >
+            </div>
+          </div>
         </div>
-
-    </section>
+      </div>
+    </div>
+  </section>
 </div>

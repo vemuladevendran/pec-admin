@@ -83,7 +83,7 @@
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" />
+        <input matInput [type]="hide ? 'password' : 'text'" required />
         <button
           mat-icon-button
           matSuffix
@@ -98,7 +98,7 @@
       </mat-form-field>
     </div>
     <div>
-      <button class="btn btn-primary btn-sm rounded shadow" type="submit">
+      <button class="btn btn-primary btn-sm rounded shadow">
         Update Password
       </button>
     </div>
