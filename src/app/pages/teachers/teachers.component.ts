@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { ViewTeacherComponent } from './view-teacher/view-teacher.component';
 
 @Component({
   selector: 'app-teachers',
@@ -11,9 +12,11 @@ export class TeachersComponent implements OnInit {
   departments: string[] = ['IT', 'CSE', 'ECE', 'EEE', 'MECH'];
 
   @Input('teacher') teacher: any = '';
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   async deleteStudent(): Promise<void> {
     const result = await Swal.fire({
@@ -34,5 +37,10 @@ export class TeachersComponent implements OnInit {
     }
   }
 
-  openDialog() {}
+  openDialog() {
+    const dialogRef = this.dialog.open(ViewTeacherComponent, {
+      width: '500px',
+      height:'300px'
+    });
+  }
 }
