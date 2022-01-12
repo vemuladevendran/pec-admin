@@ -1,13 +1,80 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6 d-flex justify-content-center">
+    <div class="row justify-content-around">
+        <!-- image upload -->
+        <div class="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center">
             <div class="profile-image-wrapper">
-                <input type="file" class="d-none">
-                <img src="/assets/default-profile.png" class="w-100 h-100" alt="profile">
+                <input (change)="handleFileSelection()" accept="image/*" type="file" class="d-none" #profileUpload>
+                <img [src]="selectedImagePreviewURL === '' ? defaultImageUrl :selectedImagePreviewURL "
+                    class="w-100 h-100" alt="profile">
+            </div>
+            <div class="cursor-pointer mt-2 p-2 rounded text-white text-center"
+                style="background-color: #5e9efc; width: 250px;" (click)="openFileSelectionDialog()">
+                <span>
+                    EDIT PROFILE
+                </span>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <form [formGroup]="createTeacher"></form>
+        <!-- form -->
+        <div class="col-12 col-md-4">
+            <form [formGroup]="createTeacher" (ngSubmit)="handleSubmit()">
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Teacher Name</mat-label>
+                        <input matInput placeholder="Name" type="text" formControlName="teacherName" />
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Teacher Title</mat-label>
+                        <input matInput placeholder="Name" type="text" formControlName="teacherTitle" />
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Teacher Id</mat-label>
+                        <input matInput placeholder="Name" type="text" formControlName="teacherId" />
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Teacher Id</mat-label>
+                        <input matInput placeholder="Name" type="text" formControlName="teacherId" />
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Major subject</mat-label>
+                        <mat-select formControlName="majorSubject">
+                            <mat-option *ngFor="let subject of subjects" [value]="subject">
+                                {{ subject }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Handling subject</mat-label>
+                        <mat-select formControlName="handlingSubjects" multiple>
+                            <mat-option *ngFor="let subject of subjects" [value]="subject">
+                                {{ subject }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <a [routerLink]="['/teachers']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                            <span class="h6">&#10006; </span>
+                            Cancel
+                        </a>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createTeacher.invalid">
+                            Create Teacher
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
