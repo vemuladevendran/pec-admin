@@ -23,6 +23,8 @@ export class AddTeacherComponent implements OnInit {
       teacherName: ['', Validators.required],
       teacherTitle: ['', Validators.required],
       teacherId: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       majorSubject: ['', Validators.required],
       handlingSubjects: ['', Validators.required]
     })
