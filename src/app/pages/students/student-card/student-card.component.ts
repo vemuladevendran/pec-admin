@@ -1,6 +1,7 @@
 import { StudentDetailComponent } from './../student-detail/student-detail.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-card',
@@ -9,7 +10,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 })
 export class StudentCardComponent implements OnInit {
   @Input('student') student: any = '';
-  isDeleteWarning: boolean = false;
 
   constructor(private dialog: MatDialog) {}
 
@@ -24,7 +24,22 @@ export class StudentCardComponent implements OnInit {
     this.dialog.open(StudentDetailComponent, dialogConfig);
   }
 
-  toggleIsDeleteWarning() {
-    this.isDeleteWarning = !this.isDeleteWarning;
+  async deleteStudent(): Promise<void> {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
+
+    if (result.isConfirmed) {
+      try {
+      } catch (error) {
+        console.log(error, 'fail to delete');
+      }
+    }
   }
 }

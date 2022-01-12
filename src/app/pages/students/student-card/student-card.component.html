@@ -31,30 +31,10 @@
         ><a routerLink="/students/add-student">create</a></mat-icon
       >
     </div>
-    <div
-      class="border rounded-circle icon delete"
-      (click)="toggleIsDeleteWarning()"
-    >
+    <div class="border rounded-circle icon delete" (click)="deleteStudent()">
       <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
         >delete</mat-icon
       >
-    </div>
-  </div>
-
-  <!-- DELETE WARNING -->
-  <div
-    class="position-absolute w-100 bottom-0 text-white bg-danger py-2"
-    *ngIf="isDeleteWarning"
-  >
-    <p>Confirm Delete?</p>
-    <div class="d-flex flex-wrap justify-content-center">
-      <button
-        class="btn btn-sm me-2 btn-light"
-        (click)="toggleIsDeleteWarning()"
-      >
-        Cancel
-      </button>
-      <button class="btn btn-sm btn-warning">Delete</button>
     </div>
   </div>
 </div>
