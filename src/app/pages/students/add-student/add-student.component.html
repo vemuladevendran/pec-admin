@@ -53,23 +53,17 @@
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Department</mat-label>
-        <input
-          matInput
-          placeholder="Department"
-          type="text"
-          formControlName="department"
-        />
+        <mat-select formControlName="department">
+          <mat-option value="department"> Department </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Class</mat-label>
-        <input
-          matInput
-          placeholder="Class"
-          type="text"
-          formControlName="class"
-        />
+        <mat-select formControlName="department" formControlName="class">
+          <mat-option value="department"> Department </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
