@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./department.component.scss']
 })
 export class DepartmentComponent implements OnInit {
-
+  data = Array(10).fill('');
   constructor() { }
 
   ngOnInit(): void {
