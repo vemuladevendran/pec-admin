@@ -28,9 +28,9 @@ export class TopnavComponent implements OnInit {
   }
 
 
-  showLoginIcon() {
-    this.isLoggedIn = this.auth.isLoggedIn();
-  }
+  // showLoginIcon() {
+  //   this.isLoggedIn = this.auth.isLoggedIn();
+  // }
 
   logout() {
     // this.auth.logout();

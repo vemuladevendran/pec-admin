@@ -20,18 +20,18 @@ export class AuthService {
     private token: TokenService
   ) { }
 
-  login(data: any) {
-    const url = `${this.settings.API_BASE_URL}/auth/login`;
-    return this.http.post<LoginResponse>(url, data).toPromise();
-  }
+  // login(data: any) {
+  //   const url = `${this.settings.API_BASE_URL}/auth/login`;
+  //   return this.http.post<LoginResponse>(url, data).toPromise();
+  // }
 
-  isLoggedIn() {
-    return this.token.isTokenExist();
-  }
+  // isLoggedIn() {
+  //   return this.token.isTokenExist();
+  // }
 
-  logout() {
-    this.token.removeToken();
-    this.router.navigate(['/login']);
-  }
+  // logout() {
+  //   this.token.removeToken();
+  //   this.router.navigate(['/login']);
+  // }
 
 }

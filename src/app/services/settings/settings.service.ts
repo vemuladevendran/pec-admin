@@ -5,16 +5,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SettingsService {
-  API_BASE_URL = `${environment.API_HOST}${environment.API_BASE}`;
-  ASSET_GROUP_LIST = [
-    ['PROPERTIES', 'Properties'],
-    ['VEHICLES', 'Vehicles'],
-    ['MACHINARIES', 'Machinaries'],
-    ['EQUIPMENTS', 'Equipments'],
-    ['GOLD', 'Gold'],
-    ['STOCK_LOTS', 'Stock Lots'],
-    ['TAKE_OVERS', 'Takeovers'],
-  ].map(([value, displayValue]) => ({ displayValue, value }));
-
+  // API_BASE_URL = `${environment.API_HOST}${environment.API_BASE}`;
   constructor() { }
 }
