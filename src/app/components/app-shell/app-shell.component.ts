@@ -36,12 +36,12 @@ export class AppShellComponent implements OnInit, OnDestroy {
     }
 
     // this.listenForTitleChanges();
-    this.showLoginIcon();
+    // this.showLoginIcon();
   }
 
-  showLoginIcon() {
-    this.isLoggedIn = this.auth.isLoggedIn();
-  }
+  // showLoginIcon() {
+  //   this.isLoggedIn = this.auth.isLoggedIn();
+  // }
 
 
   private listenForTitleChanges() {
