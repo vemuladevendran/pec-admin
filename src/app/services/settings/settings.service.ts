@@ -5,6 +5,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SettingsService {
-  // API_BASE_URL = `${environment.API_HOST}${environment.API_BASE}`;
+  API_BASE_URL = `${environment.API_HOST}${environment.API_BASE}`;
   constructor() { }
 }

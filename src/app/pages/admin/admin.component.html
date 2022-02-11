@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <!-- add department -->
+        <div class="col-12 text-md-end">
+            <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="/admin/add-admin">
+                <span class="h6 pe-1">&#43;</span> Add Admin
+            </button>
+        </div>
+        <!-- department details -->
+        <div class="col-12 table-responsive mt-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <!-- <th scope="col" class="text-center">Department</th> -->
+                        <th scope="col" class="text-center">Mobile Number</th>
+                        <th scope="col" class="text-center">Role</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let l of data; index as i">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td class="text-center">{{l.name}}</td>
+                        <!-- <td class="text-center">{{l.department}}</td> -->
+                        <td class="text-center">{{l.mobileNumber}}</td>
+                        <td class="text-center">{{l.role}}</td>
+                        <td class="text-center">
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+                                class="text-danger cursor-pointer">delete</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

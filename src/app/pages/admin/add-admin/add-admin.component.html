@@ -1,0 +1,40 @@
+<div class="container h-100">
+    <div class="row justify-content-center align-items-md-center h-100">
+        <form class="col-12 col-md-5" [formGroup]="createAdmin" (ngSubmit)="handleSubmit()">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobileNumber">
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department">
+                        {{ department }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            <mat-radio-group aria-label="Select an option" formControlName="role">
+                <mat-radio-button value="hod">HOD</mat-radio-button>
+                <mat-radio-button value="admin">ADMIN</mat-radio-button>
+            </mat-radio-group>
+            <div class="d-flex justify-content-center flex-wrap mt-4">
+                <div>
+                    <a [routerLink]="['/admin']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                        <span class="h6">&#10006; </span>
+                        Cancel
+                    </a>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createAdmin.invalid">
+                        Create Admin
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

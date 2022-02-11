@@ -58,6 +58,11 @@ const routes: Routes = [
             (m) => m.AttendanceReportModule
           ),
       },
+      {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
+      },
+
     ],
   },
 ];
