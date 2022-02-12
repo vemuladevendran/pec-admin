@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppShellModule } from './components/app-shell/app-shell.module';
 import { ToastrModule } from 'ngx-toastr';
+import { CommonComponentModule } from './components/common-components/common-component.module';
 
 // HttpClientModule
 
@@ -18,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     AppShellModule,
     HttpClientModule,
+    CommonComponentModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',
