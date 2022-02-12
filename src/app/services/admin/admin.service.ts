@@ -25,4 +25,11 @@ export class AdminService {
     const url = `${this.settings.API_BASE_URL}/admin`;
     return lastValueFrom(this.http.post(url, data));
   }
+
+  // delete Admins
+
+  deleteAdmin(id: string): Promise<any>{
+    const url = `${this.settings.API_BASE_URL}/admin/${id}`;
+    return lastValueFrom(this.http.delete(url));
+  }
 }

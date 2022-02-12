@@ -30,7 +30,7 @@
                         <td class="text-center">{{l.role}}</td>
                         <td class="text-center">
                             <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer">delete</mat-icon>
+                                class="text-danger cursor-pointer" (click)="deleteAdmin(l.id)">delete</mat-icon>
                         </td>
                     </tr>
                 </tbody>
