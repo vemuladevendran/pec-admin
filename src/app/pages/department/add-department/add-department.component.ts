@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -24,7 +25,8 @@ export class AddDepartmentComponent implements OnInit {
     private fb: FormBuilder,
     private toast: ToastrService,
     private loader: LoaderService,
-    private departmentServe: DepartmentService
+    private departmentServe: DepartmentService,
+    private router: Router,
   ) {
     this.createDepartment = this.fb.group({
       departmentName: ['', [Validators.required]],
@@ -252,9 +254,10 @@ export class AddDepartmentComponent implements OnInit {
       this.loader.show();
       await this.departmentServe.createDepartment(data);
       this.toast.success('successfully created');
+      this.router.navigate(["/department"]);
     } catch (error: any) {
       console.log(error.error);
-      this.toast.error(error.error.message);
+      this.toast.error(error.error);
     } finally {
       this.loader.hide();
     }
