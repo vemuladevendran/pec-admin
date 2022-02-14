@@ -23,9 +23,13 @@
                 </section>
                 <section class="row">
                     <div class="col-12 col-md-4">
-                        <mat-form-field appearance="outline" class="w-100">
+                        <mat-form-field appearance="outline" class="w-100" placeholder="Department Hod">
                             <mat-label>Department Hod</mat-label>
-                            <input matInput placeholder="Department Hod" type="text" formControlName="departmentHOD" />
+                            <mat-select formControlName="departmentHod">
+                                <mat-option *ngFor="let hod of hodList" [value]="hod?.name">
+                                    {{ hod?.name }}
+                                </mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
                     <div class="col-12 col-md-4">
@@ -39,7 +43,7 @@
                 <h2>Class Details</h2>
                 <hr>
                 <!-- first year -->
-                <mat-card>
+                <mat-card formGroupName="years">
                     <div class="d-flex justify-content-between my-3">
                         <h2 class="bold">First Year</h2>
                         <div>
@@ -86,7 +90,7 @@
                 </mat-card>
                 <hr>
                 <!-- second year -->
-                <mat-card>
+                <mat-card formGroupName="years">
                     <div class="d-flex justify-content-between my-3">
                         <h2 class="bold">Second Year</h2>
                         <div>
@@ -133,7 +137,7 @@
                 </mat-card>
                 <hr>
                 <!-- Third year -->
-                <mat-card>
+                <mat-card formGroupName="years">
                     <div class="d-flex justify-content-between my-3">
                         <h2 class="bold">Third Year</h2>
                         <div>
@@ -180,7 +184,7 @@
                 </mat-card>
                 <hr>
                 <!-- Fourth year -->
-                <mat-card>
+                <mat-card formGroupName="years">
                     <div class="d-flex justify-content-between my-3">
                         <h2 class="bold">Fourth Year</h2>
                         <div>

@@ -1,47 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { DepartmentService } from 'src/app/services/department/department.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-add-department',
   templateUrl: './add-department.component.html',
-  styleUrls: ['./add-department.component.scss']
+  styleUrls: ['./add-department.component.scss'],
 })
 export class AddDepartmentComponent implements OnInit {
   createDepartment: FormGroup;
-
-  sections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+  hodList: any[] = [];
+  sections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toast: ToastrService,
+    private loader: LoaderService,
+    private departmentServe: DepartmentService
   ) {
     this.createDepartment = this.fb.group({
       departmentName: ['', [Validators.required]],
       departmentCode: ['', [Validators.required]],
       departmentId: ['', [Validators.required]],
-      departmentHOD: ['', [Validators.required]],
-      firstYear: this.fb.array([]),
-      secondYear: this.fb.array([]),
-      thirdYear: this.fb.array([]),
-      fourthYear: this.fb.array([])
-    })
+      departmentHod: ['', [Validators.required]],
+      years: this.fb.group({
+        firstYear: this.fb.array([]),
+        secondYear: this.fb.array([]),
+        thirdYear: this.fb.array([]),
+        fourthYear: this.fb.array([]),
+      }),
+    });
 
     this.addFirstYearSection();
     this.addSecondYearSection();
     this.addThirdYearSection();
     this.addFourthYearSection();
 
-    this.createDepartment.get('departmentName')?.valueChanges.subscribe((v: string) => {
-      this.firstYearSection.controls.forEach(c => c.get('departmentName')?.setValue(v));
-      this.secondYearSection.controls.forEach(c => c.get('departmentName')?.setValue(v));
-      this.thirdYearSection.controls.forEach(c => c.get('departmentName')?.setValue(v));
-      this.fourthYearSection.controls.forEach(c => c.get('departmentName')?.setValue(v));
-    })
+    this.createDepartment
+      .get('departmentName')
+      ?.valueChanges.subscribe((v: string) => {
+        this.firstYearSection.controls.forEach((c) =>
+          c.get('departmentName')?.setValue(v)
+        );
+        this.secondYearSection.controls.forEach((c) =>
+          c.get('departmentName')?.setValue(v)
+        );
+        this.thirdYearSection.controls.forEach((c) =>
+          c.get('departmentName')?.setValue(v)
+        );
+        this.fourthYearSection.controls.forEach((c) =>
+          c.get('departmentName')?.setValue(v)
+        );
+      });
   }
-
 
   // first year section controls
   get firstYearSection(): FormArray {
-    return this.createDepartment.get('firstYear') as FormArray
+    return this.createDepartment.get('years')?.get('firstYear') as FormArray;
   }
 
   createFirstYearSection({ section, name }: any = {}): FormGroup {
@@ -53,7 +76,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   createFirstYearSectionWithIdentifier(): FormGroup {
-    const i = this.createDepartment?.value?.firstYear?.length || 0;
+    const i = this.createDepartment?.value?.years?.firstYear?.length || 0;
     const name = this.createDepartment?.value?.departmentName || '';
     const s = this.createFirstYearSection({ section: this.sections[i], name });
     return s;
@@ -64,17 +87,25 @@ export class AddDepartmentComponent implements OnInit {
       alert('Max 10 Sections only allowed');
       return;
     }
-    this.firstYearSection.push(this.createFirstYearSectionWithIdentifier())
+    this.firstYearSection.push(this.createFirstYearSectionWithIdentifier());
   }
 
   removeFirstYearSection(position: any): void {
-    const control = this.createDepartment.get('firstYear') as FormArray
-    control.removeAt(position)
+    const control = this.createDepartment
+      .get('years')
+      ?.get('firstYear') as FormArray;
+    control.removeAt(position);
+
+    const sectionList = this.createDepartment?.value?.years?.firstYear;
+    const section = sectionList.map((x: any, i: any) => {
+      x.section = this.sections[i];
+    })
+    this.createDepartment.get('years')?.get('firstYear')?.patchValue(sectionList);
   }
 
   // second year section controls
   get secondYearSection(): FormArray {
-    return this.createDepartment.get('secondYear') as FormArray
+    return this.createDepartment.get('years')?.get('secondYear') as FormArray;
   }
 
   createSecondYearSection({ section, name }: any = {}): FormGroup {
@@ -86,29 +117,40 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   createSecondYearSectionWithIdentifier(): FormGroup {
-    const i = this.createDepartment?.value?.secondYear?.length || 0;
+    const i = this.createDepartment?.value?.years?.secondYear?.length || 0;
     const name = this.createDepartment?.value?.departmentName || '';
     const s = this.createSecondYearSection({ section: this.sections[i], name });
     return s;
   }
 
   addSecondYearSection(): void {
-    if (this.createDepartment && this.secondYearSection.controls.length === 10) {
+    if (
+      this.createDepartment &&
+      this.secondYearSection.controls.length === 10
+    ) {
       alert('Max 10 Sections only allowed');
       return;
     }
-    this.secondYearSection.push(this.createSecondYearSectionWithIdentifier())
+    this.secondYearSection.push(this.createSecondYearSectionWithIdentifier());
   }
 
   removeSecondYearSection(position: any): void {
-    const control = this.createDepartment.get('secondYear') as FormArray
-    control.removeAt(position)
+    const control = this.createDepartment
+      .get('years')
+      ?.get('secondYear') as FormArray;
+    control.removeAt(position);
+
+    const sectionList = this.createDepartment?.value?.years?.secondYear;
+    const section = sectionList.map((x: any, i: any) => {
+      x.section = this.sections[i];
+    })
+    this.createDepartment.get('years')?.get('secondYear')?.patchValue(sectionList);
   }
 
   // third year section controls
 
   get thirdYearSection(): FormArray {
-    return this.createDepartment.get('thirdYear') as FormArray
+    return this.createDepartment.get('years')?.get('thirdYear') as FormArray;
   }
 
   createThirdYearSection({ section, name }: any = {}): FormGroup {
@@ -120,7 +162,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   createThirdYearSectionWithIdentifier(): FormGroup {
-    const i = this.createDepartment?.value?.thirdYear?.length || 0;
+    const i = this.createDepartment?.value?.years?.thirdYear?.length || 0;
     const name = this.createDepartment?.value?.departmentName || '';
     const s = this.createThirdYearSection({ section: this.sections[i], name });
     return s;
@@ -131,18 +173,26 @@ export class AddDepartmentComponent implements OnInit {
       alert('Max 10 Sections only allowed');
       return;
     }
-    this.thirdYearSection.push(this.createThirdYearSectionWithIdentifier())
+    this.thirdYearSection.push(this.createThirdYearSectionWithIdentifier());
   }
 
   removeThirdYearSection(position: any): void {
-    const control = this.createDepartment.get('thirdYear') as FormArray
-    control.removeAt(position)
+    const control = this.createDepartment
+      .get('years')
+      ?.get('thirdYear') as FormArray;
+    control.removeAt(position);
+
+    const sectionList = this.createDepartment?.value?.years?.thirdYear;
+    const section = sectionList.map((x: any, i: any) => {
+      x.section = this.sections[i];
+    })
+    this.createDepartment.get('years')?.get('thirdYear')?.patchValue(sectionList);
   }
 
   // fourth year section control
 
   get fourthYearSection(): FormArray {
-    return this.createDepartment.get('fourthYear') as FormArray
+    return this.createDepartment.get('years')?.get('fourthYear') as FormArray;
   }
 
   createFourthYearSection({ section, name }: any = {}): FormGroup {
@@ -154,31 +204,63 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   createFourthYearSectionWithIdentifier(): FormGroup {
-    const i = this.createDepartment?.value?.fourthYear?.length || 0;
+    const i = this.createDepartment?.value?.years?.fourthYear?.length || 0;
     const name = this.createDepartment?.value?.departmentName || '';
     const s = this.createFourthYearSection({ section: this.sections[i], name });
     return s;
   }
 
   addFourthYearSection(): void {
-    if (this.createDepartment && this.fourthYearSection.controls.length === 10) {
+    if (
+      this.createDepartment &&
+      this.fourthYearSection.controls.length === 10
+    ) {
       alert('Max 10 Sections only allowed');
       return;
     }
-    this.fourthYearSection.push(this.createFourthYearSectionWithIdentifier())
+    this.fourthYearSection.push(this.createFourthYearSectionWithIdentifier());
   }
 
   removeFourthYearSection(position: any): void {
-    const control = this.createDepartment.get('fourthYear') as FormArray
-    control.removeAt(position)
+    const control = this.createDepartment
+      .get('years')
+      ?.get('fourthYear') as FormArray;
+    control.removeAt(position);
+
+    const sectionList = this.createDepartment?.value?.years?.fourthYear;
+    const section = sectionList.map((x: any, i: any) => {
+      x.section = this.sections[i];
+    })
+    this.createDepartment.get('years')?.get('fourthYear')?.patchValue(sectionList);
   }
 
+  // get hod list
+
+  async getHodList(): Promise<void> {
+    try {
+      this.hodList = await this.departmentServe.getHods();
+    } catch (error) {
+      console.log(error);
+      this.toast.error('Fail to fetch hod list');
+    }
+  }
+
+  async handleSubmit(): Promise<void> {
+    try {
+      const data = this.createDepartment.value;
+      console.log(data);
+      this.loader.show();
+      await this.departmentServe.createDepartment(data);
+      this.toast.success('successfully created');
+    } catch (error: any) {
+      console.log(error.error);
+      this.toast.error(error.error.message);
+    } finally {
+      this.loader.hide();
+    }
+  }
 
   ngOnInit(): void {
+    this.getHodList();
   }
-
-  handleSubmit(): void {
-    console.log(this.createDepartment.value);
-  }
-
 }
