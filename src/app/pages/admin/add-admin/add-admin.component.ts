@@ -43,5 +43,5 @@ export class AddAdminComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

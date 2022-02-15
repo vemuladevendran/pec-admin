@@ -3,11 +3,11 @@
         <!-- add department -->
 
         <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
-            <h2 class="m-0">Admins</h2>
+            <h2 class="m-0">subjects</h2>
             <!-- add student btn -->
             <div>
-                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="/admin/add-admin">
-                    <span class="h6 pe-1">&#43;</span> Add Admin
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="/subjects/add-subject">
+                    <span class="h6 pe-1">&#43;</span> Add Subject
                 </button>
             </div>
         </div>
@@ -17,25 +17,19 @@
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Name</th>
-                        <!-- <th scope="col" class="text-center">Department</th> -->
-                        <th scope="col" class="text-center">Mobile Number</th>
-                        <th scope="col" class="text-center">Email</th>
-                        <th scope="col" class="text-center">Role</th>
+                        <th scope="col" class="text-center">Subject Name</th>
+                        <th scope="col" class="text-center">Subject code</th>
                         <th scope="col" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let l of data; index as i">
                         <th scope="row" class="text-center">{{i+1}}</th>
-                        <td class="text-center">{{l.name}}</td>
-                        <!-- <td class="text-center">{{l.department}}</td> -->
-                        <td class="text-center">{{l.mobileNumber}}</td>
-                        <td class="text-center">{{l.email}}</td>
-                        <td class="text-center">{{l.role}}</td>
+                        <td class="text-center">{{l.subjectName}}</td>
+                        <td class="text-center">{{l.subjectCode}}</td>
                         <td class="text-center">
                             <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer" (click)="deleteAdmin(l.id)">delete</mat-icon>
+                                class="text-danger cursor-pointer" (click)="deleteSubject(l.id)">delete</mat-icon>
                         </td>
                     </tr>
                 </tbody>

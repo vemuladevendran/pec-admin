@@ -1,0 +1,30 @@
+<div class="container h-100">
+    <div class="row justify-content-center align-items-md-center h-100">
+        <form class="col-12 col-md-5" [formGroup]="createSubject" (ngSubmit)="handleSubmit()">
+            <h1 class="text-center mb-4">Add New Subject</h1>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Subject Name</mat-label>
+                <input matInput formControlName="subjectName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Subject Code</mat-label>
+                <input matInput formControlName="subjectCode" />
+            </mat-form-field>
+            <div class="d-flex justify-content-center flex-wrap mt-4">
+                <div>
+                    <a [routerLink]="['/subjects']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                        <span class="h6">&#10006; </span>
+                        Cancel
+                    </a>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createSubject.invalid">
+                        Create Subject
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

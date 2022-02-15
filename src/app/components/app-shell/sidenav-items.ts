@@ -3,6 +3,7 @@ export const menuItems = [
     ['people', 'STUDENT', ['/students']],
     ['subject', 'DEPARTMENT', ['/department']],
     ['summarize', 'ATTENDANCE-REPORT', ['attendance-report']],
+    ['subject', 'SUBJECTS', ['/subjects']],
     ['summarize', 'Admins', ['admin']],
     ['account_circle', 'Profile', ['/profile']],
 ].map(([icon, text, path]) => ({ icon, text, path }));
