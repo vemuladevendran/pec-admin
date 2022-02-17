@@ -2,7 +2,8 @@
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-12 col-md-4">
             <div class="profile-image-wrapper d-none d-md-block">
-                <img src="/assets/default-profile.png" class="w-100 h-100" alt="profile">
+                <img [src]="details?.photo !== null ? details?.photo : '/assets/default-profile.png'"
+                    class="w-100 h-100" alt="profile">
             </div>
             <div class="d-md-none text-center">
                 <img src="/assets/default-profile.png" width="90" alt="student-image"
@@ -10,13 +11,18 @@
             </div>
         </div>
         <div class="col-12 col-md-8">
-            <p>Teacher Name</p>
-            <p>Teacher Title</p>
-            <p>Teacher Id</p>
-            <p>Email@gmail.com</p>
-            <p>Mobile Number</p>
-            <p>Major Department</p>
-            <p>Handling Subjects</p>
+            <p>{{details?.teacherName}}</p>
+            <p>{{details?.teacherTitle}}</p>
+            <p>{{details?.teacherId}}</p>
+            <p>{{details?.email}}</p>
+            <p>{{details?.mobileNumber}}</p>
+            <p>{{details?.majorSubject}}</p>
+            <p class="fw-bold">
+                Handling Subjects :
+            </p>
+            <span>
+                {{details?.handlingSubjects}}
+            </span>
         </div>
     </div>
 </div>

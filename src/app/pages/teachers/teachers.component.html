@@ -2,16 +2,11 @@
   <!-- head section -->
   <section class="row">
     <!-- add btn -->
-    <div
-      class="d-flex justify-content-between flex-wrap align-items-center mb-4"
-    >
+    <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
       <h2 class="m-0">Filters</h2>
 
       <div>
-        <button
-          class="btn btn-primary btn-sm rounded shadow m-0 text-white"
-          routerLink="/teachers/add-teacher"
-        >
+        <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="/teachers/add-teacher">
           <span class="h6 pe-1">&#43;</span> Add Teacher
         </button>
       </div>
@@ -21,10 +16,7 @@
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Department</mat-label>
         <mat-select>
-          <mat-option
-            *ngFor="let department of departments"
-            [value]="department"
-          >
+          <mat-option *ngFor="let department of departments" [value]="department">
             {{ department }}
           </mat-option>
         </mat-select>
@@ -45,50 +37,31 @@
   <section class="row">
     <!-- teacher card -->
 
-    <div
-      class="col-12 col-md-4 col-lg-3 px-2 mt-5"
-      *ngFor="let i of [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]"
-    >
-      <div
-        class="card rounded-3 shadow-sm text-center border border-2 position-relative transform"
-        role="button"
-        (click)="openDialog()"
-      >
+    <div class="col-12 col-md-4 col-lg-3 px-2 mt-5" *ngFor="let teacher of teachers">
+      <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform" role="button"
+        (click)="openDialog(teacher)">
         <div class="position-absolute top-0 start-50 translate-middle">
-          <img
-            src="/assets/default-profile.png"
-            width="90"
-            alt="student-image"
-            class="img-fluid rounded-circle img-thumbnail shadow-md"
-          />
+          <img [src]="teacher.photo !== null ? teacher.photo : '/assets/default-profile.png'" width="90"
+            alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
         </div>
         <div class="card-body mt-4">
           <h3 class="card-title fw-bold mb-1 text-wrap text">
-            {{ "Teacher Name" }}
+            {{ teacher.teacherName }}
           </h3>
-          <h4 class="card-text mb-2 text-black-60">{{ "Teacher Title" }}</h4>
+          <h4 class="card-text mb-2 text-black-60"> {{ teacher.teacherTitle}} </h4>
           <p class="card-text text-muted mb-2">
-            {{ "Teacher Id" }}
+            {{ teacher.teacherId }}
           </p>
           <p class="card-text text-muted mb-2">
-            {{ "Major Department" }}
+            {{ teacher.majorSubject }}
           </p>
           <div class="card-text mb-0 d-flex justify-content-center">
             <div class="me-3 border rounded-circle edit icon">
-              <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
-                ><a routerLink="/teachers/add-teacher">create</a></mat-icon
-              >
+              <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"><a
+                  routerLink="/teachers/add-teacher">create</a></mat-icon>
             </div>
-            <div
-              class="border rounded-circle icon delete"
-              (click)="deleteStudent($event)"
-            >
-              <mat-icon
-                aria-hidden="false"
-                aria-label="Edit"
-                matTooltip="Delete"
-                >delete</mat-icon
-              >
+            <div class="border rounded-circle icon delete" (click)="deleteStudent($event)">
+              <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete">delete</mat-icon>
             </div>
           </div>
         </div>
