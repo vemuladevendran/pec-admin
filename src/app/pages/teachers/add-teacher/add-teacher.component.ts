@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { SubjectService } from 'src/app/services/subject/subject.service';
 import { TeacherService } from 'src/app/services/teacher/teacher.service';
 
 @Component({
@@ -17,22 +18,23 @@ export class AddTeacherComponent implements OnInit {
   createTeacher: FormGroup
   selectedImagePreviewURL: any = "";
   selectedFile: any;
-  formData: any;
-  subjects = ['ANT', 'web technology', 'computer Networks', 'Software Engineering']
+  formData = new FormData();
+  subjects: any[] = [];
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private toast: ToastrService,
     private loader: LoaderService,
     private tacherServe: TeacherService,
-    private router: Router
+    private router: Router,
+    private subjectServe: SubjectService,
 
   ) {
     this.createTeacher = this.fb.group({
       teacherName: ['', Validators.required],
       teacherTitle: ['', Validators.required],
       teacherId: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', Validators.required],
       majorSubject: ['', Validators.required],
       handlingSubjects: ['', Validators.required],
@@ -77,10 +79,11 @@ export class AddTeacherComponent implements OnInit {
 
   updateFormData(): void {
     const formValues = this.createTeacher.value;
-    this.formData = new FormData();
     Object.keys(formValues).forEach((key) => {
+      console.log(key, formValues[key]);
       this.formData.append(key, formValues[key]);
     })
+
     this.formData.append('photo', this.selectedFile);
   }
 
@@ -89,7 +92,26 @@ export class AddTeacherComponent implements OnInit {
     this.fileInput?.nativeElement?.click();
   }
 
+  // remove selected image
+  removeSelectedImage(): void {
+    this.selectedImagePreviewURL = '';
+  }
+
+  // get subjects list
+  async getSubjects(): Promise<void> {
+    try {
+      const data = await this.subjectServe.getSubjects();
+      data.map((x: any) => {
+        this.subjects.push(x.subjectName);
+      })
+    } catch (error) {
+      console.error(error);
+      this.toast.error("Fail to Load Subjects");
+    }
+  }
+
   ngOnInit(): void {
+    this.getSubjects();
   }
 
 }

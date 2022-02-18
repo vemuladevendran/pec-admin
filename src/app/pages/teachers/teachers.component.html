@@ -12,7 +12,7 @@
       </div>
     </div>
     <!-- teacher filters -->
-    <div class="col-12 col-md-4 col-lg-3">
+    <!-- <div class="col-12 col-md-4 col-lg-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Department</mat-label>
         <mat-select>
@@ -21,22 +21,25 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="col-12 col-md-4 col-lg-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Subject</mat-label>
-        <mat-select>
-          <mat-option> maths </mat-option>
-          <mat-option> English </mat-option>
-          <mat-option> Wt </mat-option>
+        <mat-select [formControl]="subjectsFilter" (selectionChange)="onSubjectFilterChange()">
+          <mat-option value="all" selected *ngIf="filters !== undefined">All </mat-option>
+          <mat-option *ngFor="let sub of subjects" [value]="sub.subjectName"> {{sub.subjectName}} </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
   </section>
   <!-- list section -->
   <section class="row">
-    <!-- teacher card -->
 
+    <!-- empty list -->
+    <div class="col-12 text-center" *ngIf="teachers.length === 0">
+      <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
+    </div>
+    <!-- teacher card -->
     <div class="col-12 col-md-4 col-lg-3 px-2 mt-5" *ngFor="let teacher of teachers">
       <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform" role="button"
         (click)="openDialog(teacher)">
@@ -60,7 +63,7 @@
               <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"><a
                   routerLink="/teachers/add-teacher">create</a></mat-icon>
             </div>
-            <div class="border rounded-circle icon delete" (click)="deleteStudent($event)">
+            <div class="border rounded-circle icon delete" (click)="deleteStudent($event,teacher.id)">
               <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete">delete</mat-icon>
             </div>
           </div>

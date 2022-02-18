@@ -1,4 +1,11 @@
 .profile-image-wrapper {
     width: 250px;
     height: 250px;
+    position: relative;
+}
+
+.close-icon {
+    position: absolute;
+    top: 0;
+    right: 10px;
 }

@@ -10,12 +10,11 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ViewTeacherComponent implements OnInit {
 
   details: any;
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.details = this.data.data;
+    console.log(this.details);
   }
 
 }

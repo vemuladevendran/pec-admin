@@ -14,9 +14,11 @@ export class TeacherService {
   ) { }
 
   // get Teacher
-  getTeachers(): Promise<any> {
+  getTeachers(filters: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/teacher`;
-    return lastValueFrom(this.http.get(url));
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
   }
 
   // create Teacher
