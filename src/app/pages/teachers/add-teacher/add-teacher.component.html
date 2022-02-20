@@ -1,16 +1,19 @@
 <div class="container">
     <div class="row justify-content-around">
+        <!-- title -->
+        <h1>{{teacherId !== '' ? 'Edit' : 'Add'}} Teacher</h1>
         <!-- image upload -->
         <div class="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center">
             <div class="profile-image-wrapper">
                 <input (change)="handleFileSelection()" accept="image/*" type="file" class="d-none" #profileUpload>
                 <img [src]="selectedImagePreviewURL === '' ? defaultImageUrl :selectedImagePreviewURL "
                     class="w-100 h-100" alt="profile">
-                <mat-icon class="close-icon cursor-pointer" (click)="removeSelectedImage()" *ngIf="selectedImagePreviewURL !== ''">
+                <mat-icon class="close-icon cursor-pointer" (click)="removeSelectedImage()"
+                    *ngIf="selectedImagePreviewURL !== ''">
                     cancel
                 </mat-icon>
             </div>
-            <div class="cursor-pointer mt-2 p-2 rounded text-white text-center"
+            <div class="cursor-pointer mt-2 mb-3 p-2 rounded text-white text-center"
                 style="background-color: #5e9efc; width: 250px;" (click)="openFileSelectionDialog()">
                 <span>
                     EDIT PROFILE
@@ -47,7 +50,7 @@
                 <div>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Mobile Number</mat-label>
-                        <input matInput placeholder="Name" type="tel" formControlName="phoneNumber" />
+                        <input matInput placeholder="Name" type="tel" formControlName="mobileNumber" />
                     </mat-form-field>
                 </div>
                 <div>
@@ -79,7 +82,9 @@
                     </div>
                     <div>
                         <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createTeacher.invalid">
-                            Create Teacher
+                            {{
+                            teacherId !== '' ? 'update Teacher' : ' Create Teacher'
+                            }}
                         </button>
                     </div>
                 </div>

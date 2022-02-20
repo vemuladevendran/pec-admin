@@ -6,6 +6,7 @@ import { TeachersComponent } from './teachers.component';
 const routes: Routes = [
   { path: '', component: TeachersComponent },
   { path: 'add-teacher', component: AddTeacherComponent },
+  { path: 'edit-teacher/:id', component: AddTeacherComponent },
 ];
 
 @NgModule({

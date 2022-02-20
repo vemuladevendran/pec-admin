@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { SubjectService } from 'src/app/services/subject/subject.service';
@@ -20,6 +20,7 @@ export class AddTeacherComponent implements OnInit {
   selectedFile: any;
   formData = new FormData();
   subjects: any[] = [];
+  teacherId = '';
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -28,31 +29,56 @@ export class AddTeacherComponent implements OnInit {
     private tacherServe: TeacherService,
     private router: Router,
     private subjectServe: SubjectService,
+    private route: ActivatedRoute,
 
   ) {
     this.createTeacher = this.fb.group({
       teacherName: ['', Validators.required],
       teacherTitle: ['', Validators.required],
       teacherId: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', Validators.required],
       majorSubject: ['', Validators.required],
       handlingSubjects: ['', Validators.required],
       photo: [null],
     })
+    this.teacherId = this.route.snapshot.paramMap.get('id') ?? '';
   }
 
   async handleSubmit(): Promise<void> {
     try {
-      this.updateFormData();
+      console.log(this.selectedFile);
+      // checking image file
       if (this.selectedFile !== undefined) {
+        this.updateFormData();
         this.loader.show();
+
+        // checking update form or add form
+
+        if (this.teacherId !== '') {
+          await this.tacherServe.updateTeacher(this.teacherId, this.formData);
+          this.toast.success('Updated');
+          this.router.navigate(['/teachers'])
+          return;
+        }
         await this.tacherServe.createTeacher(this.formData);
         this.toast.success('Created');
         this.router.navigate(['/teachers'])
         return;
       };
       this.loader.show();
+
+      // checking update form or add form
+
+      if (this.teacherId !== '') {
+        if (this.selectedImagePreviewURL === '') {
+          this.createTeacher.value.photo = null;
+        }
+        await this.tacherServe.updateTeacher(this.teacherId, this.createTeacher.value);
+        this.toast.success('Updated');
+        this.router.navigate(['/teachers'])
+        return;
+      }
       await this.tacherServe.createTeacher(this.createTeacher.value);
       this.toast.success('Created');
       this.router.navigate(['/teachers'])
@@ -110,8 +136,32 @@ export class AddTeacherComponent implements OnInit {
     }
   }
 
+  // get form values
+
+  async getFormValues(): Promise<void> {
+    try {
+      if (this.teacherId === '') {
+        return;
+      }
+      this.loader.show();
+      const data = await this.tacherServe.getTeacherById(this.teacherId);
+      if (data.photo !== null) {
+        this.selectedImagePreviewURL = data?.photo;
+      }
+
+      this.createTeacher.patchValue(data);
+      console.log(data);
+
+    } catch (error) {
+      this.toast.error('fail to get details')
+    } finally {
+      this.loader.hide();
+    }
+  }
+
   ngOnInit(): void {
     this.getSubjects();
+    this.getFormValues();
   }
 
 }

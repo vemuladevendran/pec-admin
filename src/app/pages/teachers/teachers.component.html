@@ -42,7 +42,7 @@
     <!-- teacher card -->
     <div class="col-12 col-md-4 col-lg-3 px-2 mt-5" *ngFor="let teacher of teachers">
       <div class="card rounded-3 shadow-sm text-center border border-2 position-relative transform" role="button"
-        (click)="openDialog(teacher)">
+        (click)="openDialog($event,teacher)">
         <div class="position-absolute top-0 start-50 translate-middle">
           <img [src]="teacher.photo !== null ? teacher.photo : '/assets/default-profile.png'" width="90"
             alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
@@ -61,7 +61,7 @@
           <div class="card-text mb-0 d-flex justify-content-center">
             <div class="me-3 border rounded-circle edit icon">
               <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"><a
-                  routerLink="/teachers/add-teacher">create</a></mat-icon>
+                  [routerLink]="['/teachers/edit-teacher/',teacher.id]">create</a></mat-icon>
             </div>
             <div class="border rounded-circle icon delete" (click)="deleteStudent($event,teacher.id)">
               <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete">delete</mat-icon>

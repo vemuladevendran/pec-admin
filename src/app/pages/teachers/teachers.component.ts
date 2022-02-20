@@ -57,7 +57,8 @@ export class TeachersComponent implements OnInit {
     }
   }
 
-  openDialog(data: any) {
+  openDialog(event: any, data: any) {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(ViewTeacherComponent, {
       width: '500px',
       height: '300px',

@@ -20,11 +20,22 @@ export class TeacherService {
       params: filters,
     }));
   }
+  // get Teacher By id
+  getTeacherById(id: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/teacher/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
 
   // create Teacher
   createTeacher(data: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/teacher`;
     return lastValueFrom(this.http.post(url, data));
+  }
+
+  // update Teacher
+  updateTeacher(id: string, data: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/teacher/${id}`;
+    return lastValueFrom(this.http.put(url, data));
   }
 
   // delete Teacher
