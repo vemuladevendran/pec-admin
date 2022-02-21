@@ -73,10 +73,13 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-4">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <mat-form-field appearance="outline" class="w-100" placeholder="Class Incharge">
                                     <mat-label>Class Incharge</mat-label>
-                                    <input matInput placeholder="Class Incharge" type="text"
-                                        formControlName="classIncharge" />
+                                    <mat-select formControlName="classIncharge">
+                                        <mat-option *ngFor="let teacher of teachersList" [value]="teacher?.teacherName">
+                                            {{ teacher?.teacherName }}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-2 text-end" *ngIf="i > 0">
@@ -120,10 +123,13 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-4">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <mat-form-field appearance="outline" class="w-100" placeholder="Class Incharge">
                                     <mat-label>Class Incharge</mat-label>
-                                    <input matInput placeholder="Class Incharge" type="text"
-                                        formControlName="classIncharge" />
+                                    <mat-select formControlName="classIncharge">
+                                        <mat-option *ngFor="let teacher of teachersList" [value]="teacher?.teacherName">
+                                            {{ teacher?.teacherName }}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-2 text-end" *ngIf="i > 0">
@@ -167,10 +173,13 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-4">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <mat-form-field appearance="outline" class="w-100" placeholder="Class Incharge">
                                     <mat-label>Class Incharge</mat-label>
-                                    <input matInput placeholder="Class Incharge" type="text"
-                                        formControlName="classIncharge" />
+                                    <mat-select formControlName="classIncharge">
+                                        <mat-option *ngFor="let teacher of teachersList" [value]="teacher?.teacherName">
+                                            {{ teacher?.teacherName }}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-2 text-end" *ngIf="i > 0">
@@ -214,10 +223,13 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-4">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <mat-form-field appearance="outline" class="w-100" placeholder="Class Incharge">
                                     <mat-label>Class Incharge</mat-label>
-                                    <input matInput placeholder="Class Incharge" type="text"
-                                        formControlName="classIncharge" />
+                                    <mat-select formControlName="classIncharge">
+                                        <mat-option *ngFor="let teacher of teachersList" [value]="teacher?.teacherName">
+                                            {{ teacher?.teacherName }}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-12 col-md-2 text-end" *ngIf="i > 0">

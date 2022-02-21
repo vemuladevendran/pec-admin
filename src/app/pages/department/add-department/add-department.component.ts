@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { TeacherService } from 'src/app/services/teacher/teacher.service';
 
 @Component({
   selector: 'app-add-department',
@@ -19,6 +20,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 export class AddDepartmentComponent implements OnInit {
   createDepartment: FormGroup;
   hodList: any[] = [];
+  teachersList: any[] = [];
   sections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
   constructor(
@@ -27,6 +29,7 @@ export class AddDepartmentComponent implements OnInit {
     private loader: LoaderService,
     private departmentServe: DepartmentService,
     private router: Router,
+    private teacherServe: TeacherService,
   ) {
     this.createDepartment = this.fb.group({
       departmentName: ['', [Validators.required]],
@@ -247,6 +250,19 @@ export class AddDepartmentComponent implements OnInit {
     }
   }
 
+  // get teachers list
+
+  async getTeachersList(): Promise<void> {
+    try {
+      const filters = {};
+      this.teachersList = await this.teacherServe.getTeachers(filters);
+    } catch (error) {
+      console.log(error);
+      this.toast.error('Fail to fetch Teachers')
+    }
+  }
+
+  // handle submit
   async handleSubmit(): Promise<void> {
     try {
       const data = this.createDepartment.value;
@@ -265,5 +281,6 @@ export class AddDepartmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHodList();
+    this.getTeachersList();
   }
 }
