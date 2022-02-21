@@ -20,7 +20,6 @@ export class AdminComponent implements OnInit {
     try {
       this.loader.show();
       this.data = await this.adminServe.getAdmins();
-      console.log(this.data);
     } catch (error: any) {
       console.log(error);
       this.toast.error(error.error);

@@ -14,7 +14,6 @@ export class ViewTeacherComponent implements OnInit {
 
   ngOnInit(): void {
     this.details = this.data.data;
-    console.log(this.details);
   }
 
 }

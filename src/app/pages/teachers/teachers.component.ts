@@ -74,7 +74,7 @@ export class TeachersComponent implements OnInit {
       this.teachers = await this.teacherServe.getTeachers(filters);
     } catch (error: any) {
       console.log(error);
-      this.toast.error(error.error)
+      this.toast.error(error.error  )
     } finally {
       this.loader.hide();
     }
