@@ -1,0 +1,38 @@
+.count-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.card-icon {
+    padding: 0.4rem;
+    border-radius: 50%;
+}
+
+.count-card-1 {
+    background-color: #4ddec0;
+    > .card-icon {
+        background-color: #2daf94;
+    }
+}
+.count-card-2 {
+    background-color: #ffc26c;
+    > .card-icon {
+        background-color: #cc9648;
+    }
+}
+.count-card-3 {
+    background-color: #66adff;
+    > .card-icon {
+        background-color: #3d80cc;
+    }
+}
+.count-card-4 {
+    background-color: #ff768c;
+    > .card-icon {
+        background-color: #cc485e;
+    }
+}

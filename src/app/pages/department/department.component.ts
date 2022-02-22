@@ -16,7 +16,7 @@ export class DepartmentComponent implements OnInit {
     private toast: ToastrService,
   ) { }
 
-
+  // getting department list
   async getDepartmentList(): Promise<void> {
     try {
       this.loader.show();
@@ -28,8 +28,9 @@ export class DepartmentComponent implements OnInit {
       this.loader.hide();
     }
   }
-
-  async deleteDepartment(id: string): Promise<void> {
+  // delete department
+  async deleteDepartment(event: any, id: string): Promise<void> {
+    event.stopPropagation();
     const result = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

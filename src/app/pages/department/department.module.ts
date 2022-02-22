@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { MatCardModule } from '@angular/material/card';
+import { ViewDepartmentComponent } from './view-department/view-department.component';
 
 const materialModules = [
   MatIconModule,
@@ -27,7 +28,8 @@ const materialModules = [
 @NgModule({
   declarations: [
     DepartmentComponent,
-    AddDepartmentComponent
+    AddDepartmentComponent,
+    ViewDepartmentComponent
   ],
   imports: [
     CommonModule,

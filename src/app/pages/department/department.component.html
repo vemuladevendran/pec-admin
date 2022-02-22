@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let l of departmentList; index as i">
+                    <tr *ngFor="let l of departmentList; index as i" [routerLink]="['view-department/',l.id]">
                         <th scope="row" class="text-center">{{i+1}}</th>
                         <td class="text-center">{{l.departmentName}}</td>
                         <td class="text-center">{{l.departmentCode}}</td>
                         <td class="text-center">{{l.departmentHod}}</td>
                         <td class="text-center">
                             <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer" (click)="deleteDepartment(l.id)">delete</mat-icon>
+                                class="text-danger cursor-pointer" (click)="deleteDepartment($event,l.id)">delete</mat-icon>
                         </td>
                     </tr>
                 </tbody>
