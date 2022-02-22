@@ -1,14 +1,19 @@
 <div class="container">
     <div class="row">
         <!-- add department -->
-        <div class="col-12 text-md-end">
+        <section class="col-12 text-md-end">
             <button class="btn btn-primary btn-sm rounded shadow m-0 text-white"
                 routerLink="/department/add-department">
                 <span class="h6 pe-1">&#43;</span> Add Department
             </button>
+        </section>
+        <!-- empty list -->
+        <div class="col-12 text-center" *ngIf="departmentList.length === 0">
+            <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
         </div>
+
         <!-- department details -->
-        <div class="col-12 table-responsive mt-3">
+        <section class="col-12 table-responsive mt-3" *ngIf="departmentList.length !== 0">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -20,18 +25,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let l of data; index as i">
+                    <tr *ngFor="let l of departmentList; index as i">
                         <th scope="row" class="text-center">{{i+1}}</th>
-                        <td class="text-center">Information Technology</td>
-                        <td class="text-center">205</td>
-                        <td class="text-center">Hod</td>
+                        <td class="text-center">{{l.departmentName}}</td>
+                        <td class="text-center">{{l.departmentCode}}</td>
+                        <td class="text-center">{{l.departmentHod}}</td>
                         <td class="text-center">
                             <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer">delete</mat-icon>
+                                class="text-danger cursor-pointer" (click)="deleteDepartment(l.id)">delete</mat-icon>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </section>
     </div>
 </div>

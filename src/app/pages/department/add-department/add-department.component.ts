@@ -254,8 +254,7 @@ export class AddDepartmentComponent implements OnInit {
 
   async getTeachersList(): Promise<void> {
     try {
-      const filters = {};
-      this.teachersList = await this.teacherServe.getTeachers(filters);
+      this.teachersList = await this.teacherServe.getTeachersName();
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to fetch Teachers')

@@ -7,7 +7,7 @@ import { SettingsService } from '../settings/settings.service';
   providedIn: 'root',
 })
 export class DepartmentService {
-  constructor(private http: HttpClient, private settings: SettingsService) {}
+  constructor(private http: HttpClient, private settings: SettingsService) { }
 
   // get hod list
 
@@ -21,5 +21,19 @@ export class DepartmentService {
   createDepartment(data: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/department`;
     return lastValueFrom(this.http.post(url, data));
+  }
+
+  // get department list
+
+  getDepartmentDetails(): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/department`;
+    return lastValueFrom(this.http.get(url));
+  }
+
+  // delete department
+
+  deleteDepartment(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/department/${id}`;
+    return lastValueFrom(this.http.delete(url));
   }
 }

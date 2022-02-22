@@ -20,6 +20,13 @@ export class TeacherService {
       params: filters,
     }));
   }
+
+  // get Teachers name
+  getTeachersName(): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/teacher-name`;
+    return lastValueFrom(this.http.get(url));
+  }
+
   // get Teacher By id
   getTeacherById(id: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/teacher/${id}`;
