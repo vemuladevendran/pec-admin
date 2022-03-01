@@ -1,57 +1,127 @@
 <div class="container-fluid">
     <h2>INFORMATION TECHNOLOGY</h2>
-    <section class="row justify-content-around">
-        <!-- count cards 1 -->
-        <section class="col-12 col-md-5 col-lg-3 col-xl-2 mt-1 count-card count-card-1">
-            <div class="card-icon">
-                <mat-icon>people_alt</mat-icon>
-            </div>
-            <div>
-                <p>1st Year Students</p>
-                <p class="text-center">
-                    66
-                </p>
-            </div>
-        </section>
-        <!-- count cards 2 -->
-        <section class="col-12 col-md-5 col-lg-3 col-xl-2 mt-1 count-card count-card-2">
-            <div class="card-icon">
-                <mat-icon>people_alt</mat-icon>
-            </div>
-            <div>
-                <p>1st Year Students</p>
-                <p class="text-center">
-                    66
-                </p>
-            </div>
-        </section>
-        <!-- count cards 3 -->
-        <section class="col-12 col-md-5 col-lg-3 col-xl-2 mt-1 count-card count-card-3">
-            <div class="card-icon">
-                <mat-icon>people_alt</mat-icon>
-            </div>
-            <div>
-                <p>1st Year Students</p>
-                <p class="text-center">
-                    66
-                </p>
-            </div>
-        </section>
-        <!-- count cards 4 -->
-        <section class="col-12 col-md-5 col-lg-3 col-xl-2 mt-1 count-card count-card-4">
-            <div class="card-icon">
-                <mat-icon>people_alt</mat-icon>
-            </div>
-            <div>
-                <p>1st Year Students</p>
-                <p class="text-center">
-                    66
-                </p>
-            </div>
-        </section>
-    </section>
+    <app-student-count-cards></app-student-count-cards>
+    <hr>
     <!-- details section -->
     <section class="row">
-        
+        <!-- ear details -->
+        <div class="col-12 col-md-6">
+            <h2>Department Details</h2>
+            <p>
+                Department Name : INFORMATION TECHNOLOGY
+            </p>
+            <p>
+                Department Code : 205
+            </p>
+            <p>
+                Department Hod : HOD
+            </p>
+            <!-- department details -->
+            <section class="col-12 mt-3">
+                <mat-accordion class="ms-3">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="fw-bold">
+                                First Year
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Department Name</th>
+                                        <th scope="col" class="text-center">Section</th>
+                                        <th scope="col" class="text-center">classIncharge</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of firstYears; index as i">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td class="text-center">{{l.departmentName}}</td>
+                                        <td class="text-center">{{l.section}}</td>
+                                        <td class="text-center">{{l.classIncharge}}</td>
+                                        <td class="text-center text-success cursor-pointer">View Students</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <!-- second year -->
+                <mat-accordion class="ms-3">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="fw-bold">
+                                Second Year
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>This is the primary content of the panel.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+                <!-- Third year -->
+                <mat-accordion class="ms-3">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="fw-bold">
+                                Third Year
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>This is the primary content of the panel.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+                <!-- fourth year -->
+                <mat-accordion class="ms-3">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="fw-bold">
+                                Fourth Year
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>This is the primary content of the panel.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+            </section>
+        </div>
+        <div class="col-12 col-md-6 mt-5 mt-md-0">
+            <!-- titles details -->
+            <div class="row align-items-center">
+                <div class="col-6 col-md-4 fw-bold text-danger">First Year</div>
+                <div class="col-6 col-md-4 fw-bold text-danger">A section</div>
+                <div class="col-12 col-md-4 fw-bold text-center text-md-start">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Search By Roll No</mat-label>
+                        <input matInput placeholder="Roll No" type="text" />
+                    </mat-form-field>
+                </div>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Roll Number</th>
+                            <th scope="col" class="text-center">Exam Number</th>
+                            <th scope="col" class="text-center">Name</th>
+                            <th scope="col" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let l of classStudentsList; index as i">
+                            <th scope="row" class="text-center">{{i+1}}</th>
+                            <td class="text-center">{{l.rollNumber}}</td>
+                            <td class="text-center">{{l.examNumber}}</td>
+                            <td class="text-center">{{l.name}}</td>
+                            <td class="text-center text-success cursor-pointer">View Full Details</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
 </div>

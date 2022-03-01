@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { MatCardModule } from '@angular/material/card';
 import { ViewDepartmentComponent } from './view-department/view-department.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import { StudentCountCardsComponent } from './view-department/student-count-cards/student-count-cards.component'; 
 const materialModules = [
   MatIconModule,
   MatTooltipModule,
@@ -24,12 +25,14 @@ const materialModules = [
   MatInputModule,
   MatDialogModule,
   MatCardModule,
+  MatExpansionModule
 ]
 @NgModule({
   declarations: [
     DepartmentComponent,
     AddDepartmentComponent,
-    ViewDepartmentComponent
+    ViewDepartmentComponent,
+    StudentCountCardsComponent
   ],
   imports: [
     CommonModule,
