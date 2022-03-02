@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h2>INFORMATION TECHNOLOGY</h2>
+    <h2 class="text-uppercase">{{departmentDetails.departmentName}}</h2>
     <app-student-count-cards></app-student-count-cards>
     <hr>
     <!-- details section -->
@@ -7,15 +7,14 @@
         <!-- ear details -->
         <div class="col-12 col-md-6">
             <h2>Department Details</h2>
-            <p>
-                Department Name : INFORMATION TECHNOLOGY
-            </p>
-            <p>
-                Department Code : 205
-            </p>
-            <p>
-                Department Hod : HOD
-            </p>
+            <div class="d-flex justify-content-around">
+                <p class="mb-0">
+                    Department Code : {{departmentDetails.departmentCode}}
+                </p>
+                <p class="mb-0">
+                    Department Hod : {{departmentDetails.departmentHod}}
+                </p>
+            </div>
             <!-- department details -->
             <section class="col-12 mt-3">
                 <mat-accordion class="ms-4">
@@ -37,7 +36,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let l of firstYears; index as i">
+                                    <tr *ngFor="let l of firstYear; index as i">
                                         <th scope="row" class="text-center">{{i+1}}</th>
                                         <td class="text-center">{{l.departmentName}}</td>
                                         <td class="text-center">{{l.section}}</td>
@@ -57,7 +56,28 @@
                                 Second Year
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p>This is the primary content of the panel.</p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Department Name</th>
+                                        <th scope="col" class="text-center">Section</th>
+                                        <th scope="col" class="text-center">classIncharge</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of secondYear; index as i">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td class="text-center">{{l.departmentName}}</td>
+                                        <td class="text-center">{{l.section}}</td>
+                                        <td class="text-center">{{l.classIncharge}}</td>
+                                        <td class="text-center text-success cursor-pointer">View Students</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
 
@@ -69,7 +89,28 @@
                                 Third Year
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p>This is the primary content of the panel.</p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Department Name</th>
+                                        <th scope="col" class="text-center">Section</th>
+                                        <th scope="col" class="text-center">classIncharge</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of thirdYear; index as i">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td class="text-center">{{l.departmentName}}</td>
+                                        <td class="text-center">{{l.section}}</td>
+                                        <td class="text-center">{{l.classIncharge}}</td>
+                                        <td class="text-center text-success cursor-pointer">View Students</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
 
@@ -81,7 +122,28 @@
                                 Fourth Year
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <p>This is the primary content of the panel.</p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Department Name</th>
+                                        <th scope="col" class="text-center">Section</th>
+                                        <th scope="col" class="text-center">classIncharge</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of fourthYear; index as i">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td class="text-center">{{l.departmentName}}</td>
+                                        <td class="text-center">{{l.section}}</td>
+                                        <td class="text-center">{{l.classIncharge}}</td>
+                                        <td class="text-center text-success cursor-pointer">View Students</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </mat-expansion-panel>
                 </mat-accordion>
 

@@ -30,6 +30,13 @@ export class DepartmentService {
     return lastValueFrom(this.http.get(url));
   }
 
+  // get department Details by id
+
+  getDepartmentById(id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/department/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
+
   // delete department
 
   deleteDepartment(id: string): Promise<any> {

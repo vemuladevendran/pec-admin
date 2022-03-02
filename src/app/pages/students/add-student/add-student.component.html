@@ -2,139 +2,100 @@
   <h2 class="fw-bolder">Add Student</h2>
 
   <div class="text-center my-4">
-    <img
-      src="/assets/default-profile.png"
-      width="90"
-      alt="student-image"
-      class="img-fluid rounded-circle img-thumbnail shadow-md"
-    />
+    <img [src]="selectedImagePreviewURL === '' ? defaultImageUrl :selectedImagePreviewURL" width="90"
+      alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
 
     <p>
-      <label class="h6 text-primary my-2" role="button" for="student-file"
-        >Change Profile Image</label
-      >
-      <input type="file" class="d-none" id="student-file" />
+      <label class="h6 text-primary my-2" role="button" for="student-file">Change Profile Image</label>
+      <input id="student-file" (change)="handleFileSelection()" accept="image/*" type="file" class="d-none"
+        #profileUpload />
     </p>
   </div>
-  <form class="row" [formGroup]="createStudent">
+  <form class="row" [formGroup]="createStudent" (ngSubmit)="handleSubmit()">
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Student Name</mat-label>
-        <input
-          matInput
-          placeholder="Name"
-          type="text"
-          formControlName="studentName"
-        />
+        <input matInput placeholder="Name" type="text" formControlName="studentName" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Roll No</mat-label>
-        <input
-          matInput
-          placeholder="Roll No"
-          type="text"
-          formControlName="rollNumber"
-        />
+        <input matInput placeholder="Roll No" type="text" formControlName="rollNumber" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Register No</mat-label>
-        <input
-          matInput
-          placeholder="Reg No"
-          type="text"
-          formControlName="registerNumber"
-        />
+        <input matInput placeholder="Reg No" type="text" formControlName="examNumber" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Department</mat-label>
-        <mat-select formControlName="department">
-          <mat-option value="department"> Department </mat-option>
+        <mat-select formControlName="department" (selectionChange)="createStudent.patchValue({year: ''})">
+          <mat-option class="text-uppercase" [value]="department?.departmentName"
+            *ngFor="let department of departmentList">
+            {{department?.departmentName}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Class</mat-label>
-        <mat-select formControlName="department" formControlName="class">
-          <mat-option value="department"> Department </mat-option>
+        <mat-label>Year</mat-label>
+        <mat-select formControlName="year" (selectionChange)="getDepartmentDetails()">
+          <mat-option value="firstYear"> First Year </mat-option>
+          <mat-option value="secondYear"> Second Year </mat-option>
+          <mat-option value="thirdYear"> Third Year </mat-option>
+          <mat-option value="fourthYear"> Fourth Year </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Section</mat-label>
+        <mat-select formControlName="section">
+          <mat-option [value]="s?.section" *ngFor="let s of sectionList"> {{s?.section}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Semester</mat-label>
+        <mat-select formControlName="semester">
+          <mat-option [value]="s" *ngFor="let s of semesterList"> {{s}} </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          placeholder="Email"
-          type="email"
-          formControlName="email"
-        />
+        <input matInput placeholder="Email" type="email" formControlName="email" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Phone No</mat-label>
-        <input
-          matInput
-          placeholder="Phone No"
-          type="number"
-          formControlName="phoneNumber"
-        />
-      </mat-form-field>
-    </div>
-    <div class="col-md-6 col-lg-4 my-2">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Year</mat-label>
-        <input
-          matInput
-          placeholder="Year"
-          type="number"
-          formControlName="year"
-        />
-      </mat-form-field>
-    </div>
-    <div class="col-md-6 col-lg-4 my-2">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Semester</mat-label>
-        <input
-          matInput
-          placeholder="Semester"
-          type="number"
-          formControlName="semester"
-        />
+        <input matInput placeholder="Phone No" type="tel" formControlName="mobileNumber" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-6 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Address</mat-label>
-        <textarea
-          matInput
-          placeholder="Address"
-          formControlName="address"
-        ></textarea>
+        <textarea matInput placeholder="Address" formControlName="address"></textarea>
       </mat-form-field>
     </div>
     <div class="d-flex justify-content-end flex-wrap">
       <div>
-        <a
-          [routerLink]="['/students']"
-          class="btn bg-danger text-white btn-sm me-3 rounded shadow"
-        >
+        <a [routerLink]="['/students']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
           <span class="h6">&#10006; </span>
           Cancel
         </a>
       </div>
       <div>
-        <button
-          class="btn btn-primary btn-sm rounded shadow"
-          [disabled]="createStudent.invalid"
-        >
+        <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createStudent.invalid">
           Create Student
         </button>
       </div>
