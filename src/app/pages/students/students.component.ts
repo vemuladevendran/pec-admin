@@ -30,21 +30,17 @@ export class StudentsComponent implements OnInit {
       rollNumber: [''],
       studentName: [''],
     });
+    this.filtersForm.valueChanges.pipe(debounceTime(800))
+    .subscribe(() => {
+      this.filters = this.filtersForm?.value;
+      this.getStudentDetails(this.filters);
+    });
   }
 
   // filters handling
   handleFilterChange(): void {
     this.filters = this.filtersForm?.value;
     this.getStudentDetails(this.filters)
-  }
-
-  // handle input filter change
-  handleInputFilterChange(): void {
-    this.filters = this.filtersForm?.value;
-    this.filtersForm.valueChanges.pipe(debounceTime(800))
-      .subscribe(() => {
-        this.getStudentDetails(this.filters);
-      });
   }
 
 

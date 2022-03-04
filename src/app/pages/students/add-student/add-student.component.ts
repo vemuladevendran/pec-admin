@@ -22,6 +22,7 @@ export class AddStudentComponent implements OnInit {
   sectionList: any = [];
   semesterList: any = [];
   selectedDepartmentDetails: any;
+  studentId = '';
   formData = new FormData();
   constructor(
     private fb: FormBuilder,
@@ -45,7 +46,8 @@ export class AddStudentComponent implements OnInit {
       mobileNumber: ['', [Validators.required]],
       address: ['', [Validators.required]],
       photo: [null],
-    })
+    });
+    this.studentId = this.route.snapshot.paramMap.get('id') ?? '';
   }
 
 
@@ -117,15 +119,29 @@ export class AddStudentComponent implements OnInit {
         this.loader.show();
 
         // checking update form or add form
-
-        const result = await this.studentServe.createStudent(this.formData);
+        if (this.studentId !== '') {
+          await this.studentServe.updateStudent(this.studentId, this.formData);
+          this.toast.success('Updated');
+          this.router.navigate(['/students'])
+          return;
+        }
+        await this.studentServe.createStudent(this.formData);
         this.toast.success('created');
         this.router.navigate(['/students'])
         return;
       };
       this.loader.show();
-      console.log(this.createStudent.value);
-      const result = await this.studentServe.createStudent(this.createStudent.value);
+      // checking update form or add form
+      if (this.studentId !== '') {
+        if (this.selectedImagePreviewURL === '') {
+          this.createStudent.value.photo = null;
+        }
+        await this.studentServe.updateStudent(this.studentId, this.createStudent.value);
+        this.toast.success('Updated');
+        this.router.navigate(['/students'])
+        return;
+      }
+      await this.studentServe.createStudent(this.createStudent.value);
       this.toast.success('created');
       this.router.navigate(['/students'])
     } catch (error: any) {
@@ -136,9 +152,7 @@ export class AddStudentComponent implements OnInit {
     }
   }
 
-
   // update form data
-
   updateFormData(): void {
     const formValues = this.createStudent.value;
     Object.keys(formValues).forEach((key) => {
@@ -148,9 +162,32 @@ export class AddStudentComponent implements OnInit {
     this.formData.append('photo', this.selectedFile);
   }
 
+  // get form values
+  async getFormValues(): Promise<void> {
+    try {
+      if (this.studentId === '') {
+        return;
+      }
+      this.loader.show();
+      const data = await this.studentServe.getStudentById(this.studentId);
+      if (data.photo !== null) {
+        this.selectedImagePreviewURL = data?.photo;
+      }
+      // applying update values to form
+      this.createStudent.patchValue(data);
+      await this.getDepartmentDetails();
+      console.log(data);
+    } catch (error) {
+      this.toast.error('fail to get details')
+    } finally {
+      this.loader.hide();
+    }
+  }
+
 
   ngOnInit(): void {
     this.getDepartmentList();
+    this.getFormValues();
   }
 
 }

@@ -1,5 +1,5 @@
 <section class="container-fluid">
-  <h2 class="fw-bolder">Add Student</h2>
+  <h2 class="fw-bolder">{{studentId !== '' ? 'Edit' : 'Add'}} Student</h2>
 
   <div class="text-center my-4">
     <img [src]="selectedImagePreviewURL === '' ? defaultImageUrl :selectedImagePreviewURL" width="90"
@@ -96,7 +96,7 @@
       </div>
       <div>
         <button class="btn btn-primary btn-sm rounded shadow" [disabled]="createStudent.invalid">
-          Create Student
+          {{studentId !== '' ? 'Update': 'Create'}} Student
         </button>
       </div>
     </div>
