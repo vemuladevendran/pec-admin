@@ -10,43 +10,52 @@
       </div>
     </div>
     <!-- filters -->
-    <div class="col-lg-3 col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Department</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let department of departments" [value]="department">
-            {{ department }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-3 col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Class</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let department of departments" [value]="department">
-            {{ department }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-3 col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Roll No</mat-label>
-        <input matInput placeholder="Roll No" type="text" />
-      </mat-form-field>
-    </div>
-    <div class="col-lg-3 col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Name</mat-label>
-        <input type="text" matInput placeholder="Name" />
-      </mat-form-field>
-    </div>
+    <form class="row" [formGroup]="filtersForm">
+      <div class="col-lg-3 col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Department</mat-label>
+          <mat-select (selectionChange)="handleFilterChange()" formControlName="department">
+            <mat-option value="">All </mat-option>
+            <mat-option *ngFor="let department of departments" [value]="department.departmentName">
+              {{ department.departmentName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Year</mat-label>
+          <mat-select (selectionChange)="handleFilterChange()" formControlName="year">
+            <mat-option value="">All </mat-option>
+            <mat-option value="firstYear">First Year </mat-option>
+            <mat-option value="secondYear">Second Year </mat-option>
+            <mat-option value="thirdYear">Third Year </mat-option>
+            <mat-option value="fourthYear">Fourth Year </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Roll No</mat-label>
+          <input matInput placeholder="Roll No" type="text" (input)="handleInputFilterChange()"
+            formControlName="rollNumber" />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput placeholder="Name" (input)="handleInputFilterChange()" formControlName="studentName" />
+        </mat-form-field>
+      </div>
+    </form>
   </section>
   <!-- students cards -->
   <section class="row py-3">
-    <div class="col-lg-3 col-sm-6 col-md-4 mb-5" *ngFor="let student of students">
-      <app-student-card [student]="student"></app-student-card>
+    <div class="col-12 text-center" *ngIf="studentsList.length === 0">
+      <img src="/assets/no-data-found.png" class="w-100" alt="NO DATA FOUND">
+    </div>
+    <div class="col-lg-3 col-sm-6 col-md-4 mb-5" *ngFor="let student of studentsList">
+      <app-student-card [student]="student" (deleteStudentId)="deleteStudent($event)"></app-student-card>
     </div>
   </section>
 </div>

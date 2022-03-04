@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
   selector: 'app-add-student',
@@ -20,12 +22,16 @@ export class AddStudentComponent implements OnInit {
   sectionList: any = [];
   semesterList: any = [];
   selectedDepartmentDetails: any;
+  formData = new FormData();
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private toast: ToastrService,
     private loader: LoaderService,
     private departmentServe: DepartmentService,
+    private studentServe: StudentService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.createStudent = this.fb.group({
       studentName: ['', [Validators.required]],
@@ -38,6 +44,7 @@ export class AddStudentComponent implements OnInit {
       email: ['', [Validators.required]],
       mobileNumber: ['', [Validators.required]],
       address: ['', [Validators.required]],
+      photo: [null],
     })
   }
 
@@ -104,15 +111,43 @@ export class AddStudentComponent implements OnInit {
   // form submit
   async handleSubmit(): Promise<void> {
     try {
+      // checking image file
+      if (this.selectedFile !== undefined) {
+        this.updateFormData();
+        this.loader.show();
+
+        // checking update form or add form
+
+        const result = await this.studentServe.createStudent(this.formData);
+        this.toast.success('created');
+        this.router.navigate(['/students'])
+        return;
+      };
       this.loader.show();
       console.log(this.createStudent.value);
-    } catch (error) {
+      const result = await this.studentServe.createStudent(this.createStudent.value);
+      this.toast.success('created');
+      this.router.navigate(['/students'])
+    } catch (error: any) {
       console.log(error);
-      this.toast.error('Fail to Create')
+      this.toast.error(error.error)
     } finally {
       this.loader.hide();
     }
   }
+
+
+  // update form data
+
+  updateFormData(): void {
+    const formValues = this.createStudent.value;
+    Object.keys(formValues).forEach((key) => {
+      this.formData.append(key, formValues[key]);
+    })
+
+    this.formData.append('photo', this.selectedFile);
+  }
+
 
   ngOnInit(): void {
     this.getDepartmentList();

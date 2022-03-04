@@ -13,7 +13,6 @@ import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentCardComponent } from './student-card/student-card.component';
-import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const materialModules = [
@@ -31,7 +30,6 @@ const materialModules = [
     StudentsComponent,
     AddStudentComponent,
     StudentCardComponent,
-    StudentDetailComponent,
   ],
   imports: [
     CommonModule,
