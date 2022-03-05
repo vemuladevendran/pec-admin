@@ -22,6 +22,7 @@ export class AddStudentComponent implements OnInit {
   sectionList: any = [];
   semesterList: any = [];
   selectedDepartmentDetails: any;
+  selectedDepartmentId = '';
   studentId = '';
   formData = new FormData();
   constructor(
@@ -75,14 +76,14 @@ export class AddStudentComponent implements OnInit {
     try {
       const name = this.createStudent.value.department;
       if (name !== '') {
-        this.departmentList.find(async (x: any) => {
+        this.departmentList.find((x: any) => {
           if (x.departmentName === name) {
             this.loader.show();
-            this.selectedDepartmentDetails = await this.departmentServe.getDepartmentById(x.id);
-            this.sectionList = this.selectedDepartmentDetails.years[this.createStudent.value.year];
+            this.selectedDepartmentId = x.id;
           }
-          return;
         })
+        this.selectedDepartmentDetails = await this.departmentServe.getDepartmentById(this.selectedDepartmentId);
+        this.sectionList = this.selectedDepartmentDetails.years[this.createStudent.value.year];
       }
       const selectedYear = this.createStudent.value.year;
       switch (selectedYear) {
