@@ -16,7 +16,8 @@ export class ViewDepartmentComponent implements OnInit {
   secondYear: any[] = [];
   thirdYear: any[] = [];
   fourthYear: any[] = [];
-
+  studentsCount = [];
+  totalStudents: any;
   classStudentsList = [
     {
       rollNumber: '57648584',
@@ -40,12 +41,13 @@ export class ViewDepartmentComponent implements OnInit {
     try {
       this.loader.show();
       const data = await this.departmentServe.getDepartmentById(this.departmentId);
-      console.log(data);
       this.departmentDetails = data;
       this.firstYear = data?.years?.firstYear;
       this.secondYear = data?.years?.secondYear;
       this.thirdYear = data?.years?.thirdYear;
       this.fourthYear = data?.years?.fourthYear;
+      this.studentsCount = data?.studentsCount;
+      this.totalStudents = data?.totalCount;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to load data');

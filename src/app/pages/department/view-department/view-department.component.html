@@ -1,6 +1,7 @@
 <div class="container-fluid">
-    <h2 class="text-uppercase">{{departmentDetails.departmentName}}</h2>
-    <app-student-count-cards></app-student-count-cards>
+    <h2 class="text-uppercase">{{departmentDetails?.departmentName}}</h2>
+    <app-student-count-cards *ngIf="studentsCount.length !== 0" [studentsCount]="studentsCount"
+        [totalCount]="totalStudents"></app-student-count-cards>
     <hr>
     <!-- details section -->
     <section class="row">
@@ -9,10 +10,10 @@
             <h2>Department Details</h2>
             <div class="d-flex justify-content-around">
                 <p class="mb-0">
-                    Department Code : {{departmentDetails.departmentCode}}
+                    <span class="fw-bold">Department Code :</span> {{departmentDetails?.departmentCode}}
                 </p>
                 <p class="mb-0">
-                    Department Hod : {{departmentDetails.departmentHod}}
+                    <span class="fw-bold">Department Hod :</span> {{departmentDetails?.departmentHod}}
                 </p>
             </div>
             <!-- department details -->
@@ -160,7 +161,7 @@
                         <input matInput placeholder="Roll No" type="text" />
                     </mat-form-field>
                 </div>
-                <hr>
+                <hr class="mt-4">
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">

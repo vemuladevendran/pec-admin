@@ -25,6 +25,7 @@ export class AddStudentComponent implements OnInit {
   selectedDepartmentId = '';
   studentId = '';
   formData = new FormData();
+  maxDate = new Date();
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -39,12 +40,13 @@ export class AddStudentComponent implements OnInit {
       studentName: ['', [Validators.required]],
       rollNumber: ['', [Validators.required]],
       examNumber: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       department: ['', [Validators.required]],
       year: ['', [Validators.required]],
       section: ['', [Validators.required]],
       semester: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
       address: ['', [Validators.required]],
       photo: [null],
     });
