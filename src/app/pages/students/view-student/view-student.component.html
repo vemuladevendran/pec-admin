@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row justify-content-between">
+        <!-- personal details container -->
+        <div class="col-12 col-lg-6 d-lg-flex p-3">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <img [src]="studentData?.photo === null ? '/assets/default-profile.png' : studentData?.photo"
+                        class="profile-img w-100" alt="Profile Photo">
+                </div>
+                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center">
+                    <p>Name : <span class="fw-bold">{{studentData?.studentName}}</span></p>
+                    <p>Roll Number : <span class="fw-bold">{{studentData?.rollNumber}}</span></p>
+                    <p>Department : <span class="fw-bold">{{studentData?.department}}</span></p>
+                    <div class="btn-group my-1" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-success">
+                            Share
+                        </button>
+                        <div class="btn btn-warning">
+                            Report
+                        </div>
+                        <button type="button" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 d-none d-lg-flex align-items-center bg-light">
+            <img src="/assets/pec-logo.jpg" class="w-100" alt="College Logo">
+        </div>
+        <div class="col-12 col-lg-5 shadow-lg mt-2 mt-lg-0">
+            <h2 class="text-center">Personal Detail</h2>
+            <p>Roll Number : <span class="fw-bold">{{studentData?.rollNumber}}</span></p>
+            <p>Exam Number : <span class="fw-bold">{{studentData?.examNumber}}</span></p>
+            <p>DOB : <span class="fw-bold">{{studentData?.dob | date}}</span></p>
+            <p>Section : <span class="fw-bold">{{studentData?.section}}</span></p>
+            <p>Email : <span class="fw-bold">{{studentData?.email}}</span></p>
+            <p>Year : <span class="fw-bold">{{studentData?.year}}</span></p>
+            <p>Semester : <span class="fw-bold">{{studentData?.semester}}</span></p>
+            <p>Mobile Number : <span class="fw-bold">{{studentData?.mobileNumber}}</span></p>
+            <p>Address : <span class="fw-bold">{{studentData?.address}} </span></p>
+        </div>
+    </div>
+    <hr class="my-5">
+</div>
