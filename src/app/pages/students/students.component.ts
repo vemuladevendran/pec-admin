@@ -79,7 +79,6 @@ export class StudentsComponent implements OnInit {
 
     if (result.isConfirmed) {
       try {
-        console.log(e);
         const result = await this.studentServe.deleteStudent(e);
         console.log(result);
         this.toast.info(result);

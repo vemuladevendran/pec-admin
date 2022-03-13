@@ -22,7 +22,8 @@ export class StudentCardComponent implements OnInit {
   }
 
   // Emit the student id to delete the student
-  deleteStudent(id: string) {
+  deleteStudent(id: string, event: any) {
+    event.stopPropagation();
     this.deleteStudentId.emit(id);
   }
 }

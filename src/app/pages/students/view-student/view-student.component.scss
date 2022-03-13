@@ -2,3 +2,13 @@
     max-height: 340px;
     max-width: 300px;
 }
+
+.college-logo {
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    opacity: .3;
+    z-index: -1;
+}
