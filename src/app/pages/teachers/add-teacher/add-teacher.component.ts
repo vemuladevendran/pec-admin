@@ -105,9 +105,14 @@ export class AddTeacherComponent implements OnInit {
 
   updateFormData(): void {
     const formValues = this.createTeacher.value;
-    Object.keys(formValues).forEach((key) => {
-      console.log(key, formValues[key]);
-      this.formData.append(key, formValues[key]);
+    Object.entries(formValues).forEach(([key, value]: any) => {
+      if (Array.isArray(value)) {
+        value.forEach(v => {
+          this.formData.append(key, v);
+        })
+      } else {
+        this.formData.append(key, value);
+      }
     })
 
     this.formData.append('photo', this.selectedFile);
