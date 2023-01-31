@@ -54,7 +54,6 @@ export class AddTeacherComponent implements OnInit {
         this.loader.show();
 
         // checking update form or add form
-
         if (this.teacherId !== '') {
           await this.tacherServe.updateTeacher(this.teacherId, this.formData);
           this.toast.success('Updated');

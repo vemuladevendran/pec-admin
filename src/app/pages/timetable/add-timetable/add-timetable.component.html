@@ -1,0 +1,131 @@
+<div class="container">
+    <form class="row" [formGroup]="timeTableDetails" (ngSubmit)="handleSubmit()">
+        <!-- depatment, year and section selection -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="departmentName">
+                            <mat-option *ngFor="let department of departments" [value]="department.departmentName">
+                                {{ department.departmentName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year" (selectionChange)="getDepartmentDetails()">
+                            <mat-option value="firstYear">First Year </mat-option>
+                            <mat-option value="secondYear">Second Year </mat-option>
+                            <mat-option value="thirdYear">Third Year </mat-option>
+                            <mat-option value="fourthYear">Fourth Year </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Section</mat-label>
+                        <mat-select formControlName="section">
+                            <mat-option [value]="s?.section" *ngFor="let s of sectionList"> {{s?.section}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- time table -->
+        <div class="col-12 table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Day/Period</th>
+                        <th scope="col" *ngFor="let l of [1,2,3,4,5,6,7,8]">{{l}}</th>
+                    </tr>
+                </thead>
+                <tbody formGroupName="timeTable">
+                    <tr formGroupName="monday">
+                        <th scope="row">Monday</th>
+                        <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Select Subject</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let sub of subjectsList" [value]="sub.subjectName">
+                                        {{ sub.subjectName }} / {{sub.subjectCode}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="tuesday">
+                        <th scope="row">Tuesday</th>
+                        <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Select Subject</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let sub of subjectsList" [value]="sub.subjectName">
+                                        {{ sub.subjectName }} / {{sub.subjectCode}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="wednesday">
+                        <th scope="row">Wednesday</th>
+                        <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Select Subject</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let sub of subjectsList" [value]="sub.subjectName">
+                                        {{ sub.subjectName }} / {{sub.subjectCode}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="thursday">
+                        <th scope="row">Thursday</th>
+                        <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Select Subject</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let sub of subjectsList" [value]="sub.subjectName">
+                                        {{ sub.subjectName }} / {{sub.subjectCode}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr formGroupName="friday">
+                        <th scope="row">Friday</th>
+                        <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Select Subject</mat-label>
+                                <mat-select [formControlName]="i + 1">
+                                    <mat-option *ngFor="let sub of subjectsList" [value]="sub.subjectName">
+                                        {{ sub.subjectName }} / {{sub.subjectCode}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- form buttons -->
+        <div class="d-flex justify-content-end flex-wrap">
+            <div>
+                <a [routerLink]="['/timetable']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                    <span class="h6">&#10006; </span>
+                    Cancel
+                </a>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="timeTableDetails.invalid">
+                    Create TimeTable
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

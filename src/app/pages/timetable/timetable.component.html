@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <!-- add department -->
+
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Time Table</h2>
+            <!-- add student btn -->
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white"
+                    routerLink="/timetable/create-timetable">
+                    <span class="h6 pe-1">&#43;</span> Create Time Table
+                </button>
+            </div>
+        </div>
+        <!-- department details -->
+        <div class="col-12 col-lg-6 mt-3 border py-3" *ngFor="let table of timeTableList">
+            <!-- class details -->
+            <div class="d-flex flex-wrap justify-content-between mb-2">
+                <p class="fw-bold">Department : {{table.departmentName}}</p>
+                <p class="fw-bold">year : {{table.year}}</p>
+            </div>
+            <p class="fw-bold">{{table.section}} - section</p>
+            <mat-card class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day/Period</th>
+                            <th scope="col" *ngFor="let l of [1,2,3,4,5,6,7,8]">{{l}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Monday</th>
+                            <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                                {{table.timeTable.monday[s]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tuesday</th>
+                            <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                                {{table.timeTable.tuesday[s]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Wednesday</th>
+                            <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                                {{table.timeTable.wednesday[s]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thursday</th>
+                            <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                                {{table.timeTable.thursday[s]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Friday</th>
+                            <td *ngFor="let s of [1,2,3,4,5,6,7,8]; index as i">
+                                {{table.timeTable.friday[s]}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+        </div>
+    </div>
+</div>
