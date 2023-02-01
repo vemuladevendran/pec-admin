@@ -43,4 +43,11 @@ export class DepartmentService {
     const url = `${this.settings.API_BASE_URL}/department/${id}`;
     return lastValueFrom(this.http.delete(url));
   }
+
+  // get sections
+  getSections(departmentName:any, year: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/department/sections/${departmentName}/${year}`;
+     const data = lastValueFrom(this.http.get(url));
+     return data;
+  }
 }

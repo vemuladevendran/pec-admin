@@ -6,25 +6,16 @@ import { SettingsService } from '../settings/settings.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TimeTableService {
+export class AttendanceService {
   constructor(
     private http: HttpClient,
     private settings: SettingsService,
 
   ) { }
 
-  // create timetable
-  createTimeTable(data: any): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/time-table`;
+  // mark Attendance
+  markAttendance(data:any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/attendance`;
     return lastValueFrom(this.http.post(url, data));
   }
-
-  // get timetable
-  getTimeTable(filters?: any): Promise<any> {
-    const url = `${this.settings.API_BASE_URL}/time-table`;
-    return lastValueFrom(this.http.get(url, {
-      params: filters,
-    }));
-  }
-
 }

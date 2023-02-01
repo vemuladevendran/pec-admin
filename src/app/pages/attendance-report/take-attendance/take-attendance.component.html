@@ -1,0 +1,85 @@
+<div class="container">
+    <form class="row" [formGroup]="attendanceForm" (ngSubmit)="handleSubmit()">
+        <!-- depatment, year and section selection -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="departmentName">
+                            <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                                {{ department.departmentName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year" (selectionChange)="getSections()">
+                            <mat-option value="firstYear">First Year </mat-option>
+                            <mat-option value="secondYear">Second Year </mat-option>
+                            <mat-option value="thirdYear">Third Year </mat-option>
+                            <mat-option value="fourthYear">Fourth Year </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Section</mat-label>
+                        <mat-select formControlName="section" (selectionChange)="getStudents()">
+                            <mat-option [value]="s?.section" *ngFor="let s of sectionList"> {{s?.section}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Period</mat-label>
+                        <mat-select formControlName="periodNumber" (selectionChange)="setCurrentPeriodSubject()">
+                            <mat-option [value]="p" *ngFor="let p of [1,2,3,4,5,6,7,8]">{{p}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <p class="fw-bold" *ngIf="currentPeriod !== ''">Current Period : {{currentPeriod}}</p>
+        <!-- time table -->
+        <div class="col-12 table-responsive" *ngIf="studentsList.length > 0">
+            <table class="table table-hover border">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center d-none d-md-block">Name</th>
+                        <th scope="col" class="text-center">Exam Number</th>
+                        <th scope="col" class="text-center">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="students">
+                    <tr *ngFor="let s of studentsList; index as i" [formGroupName]="i">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td class="text-center d-none d-md-block">{{s.studentName}}</td>
+                        <td class="text-center">{{s.examNumber}}</td>
+                        <td class="text-center">
+                            <input type="checkbox" checked formControlName="attendance">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- form buttons -->
+        <div class="d-flex justify-content-end flex-wrap">
+            <div>
+                <a [routerLink]="['/attendance-report']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                    <span class="h6">&#10006; </span>
+                    Cancel
+                </a>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="attendanceForm.invalid">
+                    Save attendance
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
