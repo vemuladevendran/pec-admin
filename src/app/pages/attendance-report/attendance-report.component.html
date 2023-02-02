@@ -3,14 +3,122 @@
         <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
             <h2 class="m-0">Attendance Report</h2>
             <div>
-                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white"
-                    routerLink="take-attendance">
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="take-attendance">
                     <span class="h6 pe-1">&#43;</span> Take Attendance
                 </button>
             </div>
         </div>
-        <div class="col-12 col-lg-12 mt-3 border py-3">
-
+        <!-- filters details -->
+        <form class="row" [formGroup]="filtersForm">
+            <div class="col-12 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentName">
+                        <mat-option value="">All </mat-option>
+                        <mat-option *ngFor="let department of departments" [value]="department.departmentName">
+                            {{ department.departmentName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option value="">All </mat-option>
+                        <mat-option value="firstYear">First Year </mat-option>
+                        <mat-option value="secondYear">Second Year </mat-option>
+                        <mat-option value="thirdYear">Third Year </mat-option>
+                        <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        <div class="col-12 col-lg-12 mt-3 table-responsive py-3" *ngIf="attendanceReports.length > 0">
+            <!-- small screen table -->
+            <table class="table table-hover border border-dark d-md-none">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Date</th>
+                        <th scope="col" class="text-center">Department</th>
+                        <th scope="col" class="text-center">Year</th>
+                        <th scope="col" class="text-center">section</th>
+                        <th scope="col" class="text-center">period</th>
+                        <th scope="col" class="text-center">Subject Name</th>
+                        <th scope="col" class="text-center">total present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let l of attendanceReports; index as i">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <td class="text-center">{{l.date | date}}</td>
+                        <td class="text-center">{{l.departmentName}}</td>
+                        <td class="text-center">{{l.year}}</td>
+                        <td class="text-center">{{l.section}}</td>
+                        <td class="text-center">{{l.periodNumber}}</td>
+                        <td class="text-center">{{l.subject}}</td>
+                        <td class="text-center">{{l.students.length -l.absentCount}} / {{l.students.length}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- big screen table -->
+            <div class="d-none d-md-block">
+                <div class="row justify-content-around px-2 w-100">
+                    <div class="col-2">Date</div>
+                    <div class="col-3">Department Name</div>
+                    <div class="col-2">Year</div>
+                    <div class="col-1">Section</div>
+                    <div class="col-2">Subject</div>
+                    <div class="col-1">PeriodNumber</div>
+                    <div class="col-1">Total Present</div>
+                </div>
+                <mat-accordion class="ms-3" *ngFor="let l of attendanceReports; index as i">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="fw-bold">
+                                <div class="row justify-content-around align-items-center w-100">
+                                    <div class="col-2">{{l.date | date}}</div>
+                                    <div class="col-3">{{l.departmentName }}</div>
+                                    <div class="col-2">{{l.year}}</div>
+                                    <div class="col-1 text-center">{{l.section}}</div>
+                                    <div class="col-2">{{l.subject}}</div>
+                                    <div class="col-1 text-center">{{l.periodNumber}}</div>
+                                    <div class="col-1 text-center">{{l.students.length -l.absentCount}} /
+                                        {{l.students.length}}</div>
+                                </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Exam Number</th>
+                                        <th scope="col" class="text-center">Attendance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let s of l.students; index as i"
+                                        [ngClass]="!s.attendance ? 'bg-danger' : 'bg-light'">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td class="text-center">{{s.examNumber}}</td>
+                                        <td class="text-center">{{s.attendance ? 'Present' : 'Absent'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
     </div>
 </div>
