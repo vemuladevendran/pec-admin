@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
+import { CanLoad, Route, UrlSegment, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanLoad {
+  private nonLoginOnlyRoutes = [
+    'login',
+  ];
 
   constructor(
     private auth: AuthService,
@@ -14,30 +17,55 @@ export class AuthGuard implements CanLoad {
 
   }
 
-  canLoad(
+  async canLoad(
     route: Route,
-    segments: UrlSegment[]): boolean {
+    segments: UrlSegment[]): Promise<boolean> {
     // console.log(route);
-    return true;
 
-    // const isLoggedIn = this.auth.isLoggedIn();
-    // const isGoingToLoginPage = route.path === 'login';
+    const isLoggedIn = await this.auth.isLoggedIn();
+    const isGoingToNonLoginPage = this.nonLoginOnlyRoutes.some(r => route.path === r);
 
-    // if (!isLoggedIn && isGoingToLoginPage) {
-    //   return true;
-    // }
+    if (!isLoggedIn && isGoingToNonLoginPage) {
+      return true;
+    }
 
-    // if (isLoggedIn && !isGoingToLoginPage) {
-    //   return true;
-    // }
+    if (isLoggedIn && !isGoingToNonLoginPage) {
+      return true;
+    }
 
-    // if (isLoggedIn && isGoingToLoginPage) {
-    //   this.router.navigate(['/']);
-    //   return false;
-    // }
+    if (isLoggedIn && isGoingToNonLoginPage) {
+      this.router.navigate(['/dashboard']);
+      return false;
+    }
 
-    // this.router.navigate(['/login']);
-    // return false;
+    this.router.navigate(['/login']);
+    return false;
   }
+
+  async canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<boolean> {
+    // console.log(route);
+    const isLoggedIn = await this.auth.isLoggedIn();
+    const isGoingToNonLoginPage = this.nonLoginOnlyRoutes.some(r => route.routeConfig?.path === r);
+
+    if (!isLoggedIn && isGoingToNonLoginPage) {
+      return true;
+    }
+
+    if (isLoggedIn && !isGoingToNonLoginPage) {
+      return true;
+    }
+
+    if (isLoggedIn && isGoingToNonLoginPage) {
+      this.router.navigate(['/teachers']);
+      return false;
+    }
+
+    this.router.navigate(['/login']);
+    return false;
+
+  }
+
 
 }

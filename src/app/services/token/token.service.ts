@@ -10,18 +10,19 @@ export class TokenService {
   constructor() { }
 
   saveToken(data: any) {
-    window.localStorage.setItem(this.tokenKey, data);
+    localStorage.setItem(this.tokenKey, data);
   }
 
   getToken() {
-    return window.localStorage.getItem(this.tokenKey);
+    return localStorage.getItem(this.tokenKey);
   }
 
+
   isTokenExist() {
-    return this.getToken() ? true : false;
+    return !!this.getToken();
   }
 
   removeToken() {
-    window.localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.tokenKey);
   }
 }

@@ -37,7 +37,6 @@ export class AttendanceReportComponent implements OnInit {
       });
   }
 
-
   // get attendance report
   async getAttendanceReport(filters: any): Promise<void> {
     try {

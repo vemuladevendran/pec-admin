@@ -1,0 +1,24 @@
+<section class="container-fluid h-100 login-container">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center col-md-6">
+            <div class="login-form-container p-3">
+                <h2 class="mb-4 login-text">Login</h2>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div>
+                        <input type="email" class="login-input" placeholder="Email" formControlName="email">
+                    </div>
+                    <div>
+                        <input type="password" class="login-input" placeholder="password" formControlName="password">
+                    </div>
+                    <p class="text-center" style="font-size: 10px;">
+                        By login, you agree to our Terms of Use and Privacy Policy.
+                    </p>
+                    <div class="text-center">
+                        <button class="primary-btn" type="submit" routerLink="/">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 d-none d-md-block"></div>
+    </div>
+</section>
