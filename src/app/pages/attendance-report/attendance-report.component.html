@@ -6,6 +6,9 @@
                 <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="take-attendance">
                     <span class="h6 pe-1">&#43;</span> Take Attendance
                 </button>
+                <button class="btn btn-warning btn-sm rounded shadow m-0 text-white ms-2" routerLink="reports">
+                    Get reports
+                </button>
             </div>
         </div>
         <!-- filters details -->
@@ -42,6 +45,9 @@
                 </mat-form-field>
             </div>
         </form>
+        <!-- no data found -->
+        <div class="col-12 text-center fw-bold" *ngIf="attendanceReports.length === 0">No Attendance is marked on this
+            date.</div>
         <div class="col-12 col-lg-12 mt-3 table-responsive py-3" *ngIf="attendanceReports.length > 0">
             <!-- small screen table -->
             <table class="table table-hover border border-dark d-md-none">

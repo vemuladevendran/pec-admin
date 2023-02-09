@@ -21,6 +21,15 @@ export class StudentService {
     }));
   }
 
+   // get students
+   getStudentsByExamNumbers(filters?: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/students/examnumbers`;
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
+  }
+
+
   // create student
   createStudent(data: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/student`;

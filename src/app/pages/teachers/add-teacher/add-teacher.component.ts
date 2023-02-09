@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { SubjectService } from 'src/app/services/subject/subject.service';
 import { TeacherService } from 'src/app/services/teacher/teacher.service';
@@ -21,6 +22,7 @@ export class AddTeacherComponent implements OnInit {
   formData = new FormData();
   subjects: any[] = [];
   teacherId = '';
+  departments: any[] = [];
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -30,6 +32,7 @@ export class AddTeacherComponent implements OnInit {
     private router: Router,
     private subjectServe: SubjectService,
     private route: ActivatedRoute,
+    private departmentServe: DepartmentService,
 
   ) {
     this.createTeacher = this.fb.group({
@@ -40,6 +43,7 @@ export class AddTeacherComponent implements OnInit {
       email: ['', Validators.required],
       majorSubject: ['', Validators.required],
       handlingSubjects: ['', Validators.required],
+      department: ['', Validators.required],
       photo: [null],
     })
     this.teacherId = this.route.snapshot.paramMap.get('id') ?? '';
@@ -140,6 +144,17 @@ export class AddTeacherComponent implements OnInit {
     }
   }
 
+   // get department
+   async getDepartments(): Promise<void> {
+    try {
+      this.departments = await this.departmentServe.getDepartmentDetails();
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error.message);
+    }
+  }
+
+
   // get form values
 
   async getFormValues(): Promise<void> {
@@ -164,6 +179,7 @@ export class AddTeacherComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDepartments();
     this.getSubjects();
     this.getFormValues();
   }

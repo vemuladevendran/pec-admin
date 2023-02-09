@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { GetReportsComponent } from './get-reports/get-reports.component';
 
 const materialModules = [
   MatFormFieldModule,
@@ -27,7 +28,8 @@ const materialModules = [
 @NgModule({
   declarations: [
     AttendanceReportComponent,
-    TakeAttendanceComponent
+    TakeAttendanceComponent,
+    GetReportsComponent
   ],
   imports: [
     CommonModule,

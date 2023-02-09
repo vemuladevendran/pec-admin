@@ -49,6 +49,16 @@
                 </div>
                 <div>
                     <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="department">
+                            <mat-option *ngFor="let department of departments" [value]="department.departmentName">
+                                {{ department.departmentName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Mobile Number</mat-label>
                         <input matInput placeholder="Name" type="tel" formControlName="mobileNumber" />
                     </mat-form-field>
