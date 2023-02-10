@@ -1,4 +1,3 @@
-import { AddStudentComponent } from './pages/students/add-student/add-student.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppShellComponent } from './components/app-shell/app-shell.component';
@@ -61,6 +60,10 @@ const routes: Routes = [
       {
         path: 'timetable',
         loadChildren: () => import('./pages/timetable/timetable.module').then(m => m.TimetableModule)
+      },
+      {
+        path: 'notes',
+        loadChildren: () => import('./pages/notes/notes.module').then(m => m.NotesModule)
       },
 
       {

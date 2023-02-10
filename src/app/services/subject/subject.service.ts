@@ -26,9 +26,20 @@ export class SubjectService {
   }
 
   // delete subject
-
   deleteSubject(id: string): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/subject/${id}`;
     return lastValueFrom(this.http.delete(url));
+  }
+
+  // create department subject
+  createDepartmentSubject(data: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/departmentSubject`;
+    return lastValueFrom(this.http.post(url, data));
+  }
+
+  // get department subjects
+  getDepartmentSubjects(): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/departmentSubject`;
+    return lastValueFrom(this.http.get(url));
   }
 }

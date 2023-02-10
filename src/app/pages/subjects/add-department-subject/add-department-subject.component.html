@@ -1,0 +1,51 @@
+<div class="container">
+    <form class="row" [formGroup]="subjectForm" (ngSubmit)="handleSubmit()">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentName">
+                        <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                            {{ department.departmentName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option value="firstYear">First Year </mat-option>
+                        <mat-option value="secondYear">Second Year </mat-option>
+                        <mat-option value="thirdYear">Third Year </mat-option>
+                        <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>subjects</mat-label>
+                    <mat-select formControlName="subjects" multiple>
+                        <mat-option *ngFor="let subject of subjectList" [value]="subject.subjectName">
+                            {{ subject.subjectName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <a [routerLink]="['/subjects/department-subject']"
+                        class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                        <span class="h6">&#10006; </span>
+                        Cancel
+                    </a>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm rounded shadow" [disabled]="subjectForm.invalid">
+                        save subjects
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

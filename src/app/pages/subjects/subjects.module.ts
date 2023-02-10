@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { DepartmentSubjectComponent } from './department-subject/department-subject.component';
+import { AddDepartmentSubjectComponent } from './add-department-subject/add-department-subject.component';
 const materialModules = [
   MatIconModule,
   MatFormFieldModule,
@@ -28,7 +30,9 @@ const materialModules = [
 @NgModule({
   declarations: [
     SubjectsComponent,
-    AddSubjectComponent
+    AddSubjectComponent,
+    DepartmentSubjectComponent,
+    AddDepartmentSubjectComponent
   ],
   imports: [
     CommonModule,
