@@ -11,31 +11,65 @@
                 </button>
             </div>
         </div>
+        <!-- filters form -->
+        <form class="row" [formGroup]="filtersForm">
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentName">
+                        <mat-option value="">All </mat-option>
+                        <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                            {{ department.departmentName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option value="">All </mat-option>
+                        <mat-option value="firstYear">First Year </mat-option>
+                        <mat-option value="secondYear">Second Year </mat-option>
+                        <mat-option value="thirdYear">Third Year </mat-option>
+                        <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
         <!-- department details -->
-        <div class="col-12 table-responsive mt-3">
+        <h2 *ngIf="notes.length === 0" class="text-center">No Data found</h2>
+        <div class="col-12 table-responsive mt-3" *ngIf="notes.length > 0">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Name</th>
-                        <th scope="col" class="text-center">Mobile Number</th>
-                        <th scope="col" class="text-center">Email</th>
-                        <th scope="col" class="text-center">Role</th>
-                        <th scope="col" class="text-center">Action</th>
+                        <th scope="col" class="text-center">Department</th>
+                        <th scope="col" class="text-center">Year</th>
+                        <th scope="col" class="text-center">Subject</th>
+                        <th scope="col" class="text-center">Unit</th>
+                        <th scope="col" class="text-center">Download</th>
+                        <th scope="col" class="text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let l of data; index as i">
+                    <tr *ngFor="let n of notes; index as i">
                         <th scope="row" class="text-center">{{i+1}}</th>
-                        <td class="text-center">{{l.name}}</td>
-                        <td class="text-center">{{l.mobileNumber}}</td>
-                        <td class="text-center">{{l.email}}</td>
-                        <td class="text-center">{{l.role}}</td>
-                        <td class="text-center">
-                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer" (click)="deleteAdmin(l.id)">delete</mat-icon>
-                        </td>
-                    </tr> -->
+                        <th class="text-center">{{n.departmentName}}</th>
+                        <th class="text-center">{{n.year}}</th>
+                        <th class="text-center">{{n.subject}}</th>
+                        <th class="text-center">{{n.unit}}</th>
+                        <th class="text-center">
+                            <a class="btn btn-primary btn-sm rounded shadow m-0 text-white" target="_blank" [href]="n?.pdfFile" download>
+                                <span class="h6 pe-1">&darr;</span> Download notes
+                            </a>
+                        </th>
+                        <th>
+                            <div class="text-center cursor-pointer" (click)="deleteNotes(n.id)">
+                                <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete">delete</mat-icon>
+                              </div>
+                        </th>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -26,8 +26,9 @@
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>subjects</mat-label>
                     <mat-select formControlName="subjects" multiple>
-                        <mat-option *ngFor="let subject of subjectList" [value]="subject.subjectName">
-                            {{ subject.subjectName }}
+                        <mat-option *ngFor="let subject of subjectList"
+                            [value]="subject.subjectName + ' / ' + subject.subjectCode">
+                            {{ subject.subjectName + ' / ' + subject.subjectCode}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

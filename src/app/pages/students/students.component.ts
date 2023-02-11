@@ -29,6 +29,7 @@ export class StudentsComponent implements OnInit {
       year: [''],
       rollNumber: [''],
       studentName: [''],
+      examNumber: [''],
     });
     this.filtersForm.valueChanges.pipe(debounceTime(800))
     .subscribe(() => {

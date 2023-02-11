@@ -38,8 +38,10 @@ export class SubjectService {
   }
 
   // get department subjects
-  getDepartmentSubjects(): Promise<any> {
+  getDepartmentSubjects(filters?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/departmentSubject`;
-    return lastValueFrom(this.http.get(url));
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
   }
 }
