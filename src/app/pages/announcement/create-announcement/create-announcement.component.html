@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="row" [formGroup]="announcementForm" (ngSubmit)="handleSubmit()">
+        <h2>Create New Announcement</h2>
+        <div class="col-12 col-md-4 col-lg-3">
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Title" type="text" formControlName="title" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Url</mat-label>
+                    <input matInput placeholder="Url" type="text" formControlName="url" />
+                </mat-form-field>
+            </div>
+            <!-- image -->
+            <p class="text-primary">Select the preview image file</p>
+            <input type="file" formControlName="image" (change)="handleFileSelection($event)">
+        </div>
+        <div class="d-flex justify-content-end flex-wrap mt-5">
+            <div>
+                <a [routerLink]="['/announcement']" class="btn bg-danger text-white btn-sm me-3 rounded shadow">
+                    <span class="h6">&#10006; </span>
+                    Cancel
+                </a>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow" [disabled]="announcementForm.invalid">
+                  Create
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

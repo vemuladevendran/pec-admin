@@ -17,8 +17,9 @@
             <div class="shadow rounded p-3">
                 <div class="d-flex justify-content-between">
                     <p class="text-uppercase fw-bold">{{s.departmentName}}</p>
-                    <p>{{s.year}}</p>
+                    <p>{{s.year}} <span class="fw-bold">{{s.semester}}</span></p>
                 </div>
+                <hr>
                 <p *ngFor="let l of s?.subjects">{{l}}</p>
             </div>
         </div>

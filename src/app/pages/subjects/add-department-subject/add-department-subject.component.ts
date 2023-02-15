@@ -13,8 +13,9 @@ import { SubjectService } from 'src/app/services/subject/subject.service';
 export class AddDepartmentSubjectComponent implements OnInit {
 
   subjectForm: FormGroup;
-  departmentList:any[] = [];
-  subjectList:any[] = [];
+  departmentList: any[] = [];
+  subjectList: any[] = [];
+  semesterList: any[] = [];
   constructor(
     private fb: FormBuilder,
     private subjectServe: SubjectService,
@@ -26,8 +27,9 @@ export class AddDepartmentSubjectComponent implements OnInit {
       departmentName: ['', Validators.required],
       year: ['', Validators.required],
       subjects: ['', Validators.required],
+      semester: ['', Validators.required]
     })
-   }
+  }
 
 
 
@@ -42,7 +44,7 @@ export class AddDepartmentSubjectComponent implements OnInit {
   }
 
   // get subjects list 
-  async getSubjectList():Promise<void>{
+  async getSubjectList(): Promise<void> {
     try {
       this.subjectList = await this.subjectServe.getSubjects();
     } catch (error) {
@@ -51,13 +53,35 @@ export class AddDepartmentSubjectComponent implements OnInit {
     }
   }
 
-  async handleSubmit(): Promise<void>{
+  async handleSubmit(): Promise<void> {
     try {
       await this.subjectServe.createDepartmentSubject(this.subjectForm.value);
       this.router.navigate(['/subjects/department-subject']);
     } catch (error) {
       console.log(error);
       this.toast.error('fail to create');
+    }
+  }
+
+  // semester list
+  handleYearChange(): void {
+    const selectedYear = this.subjectForm.value.year;
+    switch (selectedYear) {
+      case 'firstYear':
+        this.semesterList = ['1', '2']
+        break;
+      case 'secondYear':
+        this.semesterList = ['3', '4']
+        break;
+      case 'thirdYear':
+        this.semesterList = ['5', '6']
+        break;
+      case 'fourthYear':
+        this.semesterList = ['7', '8']
+        break;
+      default:
+        this.semesterList = ['1', '2', '3', '4', '5', '6', '7', '8']
+        break;
     }
   }
 

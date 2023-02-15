@@ -16,6 +16,7 @@ export class UploadNotesComponent implements OnInit {
   departmentList: any[] = [];
   uploadForm: FormGroup;
   subjectList: any[] = [];
+  semesterList: any[] = [];
   selectedFile: any;
   formData = new FormData();
   constructor(
@@ -29,6 +30,7 @@ export class UploadNotesComponent implements OnInit {
     this.uploadForm = this.fb.group({
       departmentName: ['', Validators.required],
       year: ['', Validators.required],
+      semester: ['', Validators.required],
       subject: ['', Validators.required],
       unit: ['', Validators.required],
       pdfFile: [null, Validators.required]
@@ -53,6 +55,7 @@ export class UploadNotesComponent implements OnInit {
       const filters = {
         departmentName: this.uploadForm.value.departmentName,
         year: this.uploadForm.value.year,
+        semester: this.uploadForm.value.semester,
       }
       const data = await this.subjectServe.getDepartmentSubjects(filters)
       this.subjectList = data[0].subjects;
@@ -75,9 +78,30 @@ export class UploadNotesComponent implements OnInit {
     }
   }
 
+  // handle year change
+  handleYearChange() {
+    const selectedYear = this.uploadForm.value.year;
+    switch (selectedYear) {
+      case 'firstYear':
+        this.semesterList = ['1', '2']
+        break;
+      case 'secondYear':
+        this.semesterList = ['3', '4']
+        break;
+      case 'thirdYear':
+        this.semesterList = ['5', '6']
+        break;
+      case 'fourthYear':
+        this.semesterList = ['7', '8']
+        break;
+      default:
+        this.semesterList = ['1', '2', '3', '4', '5', '6', '7', '8']
+        break;
+    }
+  }
+
   // image change handle
   handleFileSelection(event: any): void {
-    console.log()
     const [file] = event.target.files;
     this.selectedFile = file;
   }

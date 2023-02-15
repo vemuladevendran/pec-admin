@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Announcements</h2>
+            <div>
+                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="create">
+                    Create new
+                </button>
+            </div>
+        </div>
+        <!-- card details -->
+        <div class="col-12 col-md-4 col-lg-3" *ngFor="let a of detailsList">
+            <div class="card w-100">
+                <img [src]="a.image" class="card-img-top img-an" alt="Announcement">
+                <div class="card-body">
+                    <h2 class="card-title">{{a?.title}}</h2>
+                    <div class="mb-2">
+                        <a [href]="a.url" target="_blank" class="card-text">{{a?.url}}</a>
+                    </div>
+                    <button class="btn btn-danger" (click)="delete(a.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

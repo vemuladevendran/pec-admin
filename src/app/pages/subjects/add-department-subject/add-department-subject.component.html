@@ -14,11 +14,19 @@
             <div>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Year</mat-label>
-                    <mat-select formControlName="year">
+                    <mat-select formControlName="year" (selectionChange)="handleYearChange()">
                         <mat-option value="firstYear">First Year </mat-option>
                         <mat-option value="secondYear">Second Year </mat-option>
                         <mat-option value="thirdYear">Third Year </mat-option>
                         <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Semester</mat-label>
+                    <mat-select formControlName="semester">
+                        <mat-option [value]="s" *ngFor="let s of semesterList">{{s}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

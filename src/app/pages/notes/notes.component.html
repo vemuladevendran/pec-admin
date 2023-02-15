@@ -36,6 +36,15 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Semester</mat-label>
+                    <mat-select formControlName="semester">
+                        <mat-option value="">All</mat-option>
+                        <mat-option [value]="s" *ngFor="let s of [1,2,3,4,5,6,7,8]">{{s}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </form>
         <!-- department details -->
         <h2 *ngIf="notes.length === 0" class="text-center">No Data found</h2>
@@ -46,6 +55,7 @@
                         <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">Department</th>
                         <th scope="col" class="text-center">Year</th>
+                        <th scope="col" class="text-center">Semester</th>
                         <th scope="col" class="text-center">Subject</th>
                         <th scope="col" class="text-center">Unit</th>
                         <th scope="col" class="text-center">Download</th>
@@ -57,17 +67,19 @@
                         <th scope="row" class="text-center">{{i+1}}</th>
                         <th class="text-center">{{n.departmentName}}</th>
                         <th class="text-center">{{n.year}}</th>
+                        <th class="text-center">{{n.semester}}</th>
                         <th class="text-center">{{n.subject}}</th>
                         <th class="text-center">{{n.unit}}</th>
                         <th class="text-center">
-                            <a class="btn btn-primary btn-sm rounded shadow m-0 text-white" target="_blank" [href]="n?.pdfFile" download>
+                            <a class="btn btn-primary btn-sm rounded shadow m-0 text-white" target="_blank"
+                                [href]="n?.pdfFile" download>
                                 <span class="h6 pe-1">&darr;</span> Download notes
                             </a>
                         </th>
                         <th>
                             <div class="text-center cursor-pointer" (click)="deleteNotes(n.id)">
                                 <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete">delete</mat-icon>
-                              </div>
+                            </div>
                         </th>
                     </tr>
                 </tbody>

@@ -26,6 +26,7 @@ export class NotesComponent implements OnInit {
     this.filtersForm = this.fb.group({
       departmentName: [''],
       year: [''],
+      semester: [''],
     });
     this.filtersForm.valueChanges.pipe(debounceTime(800))
       .subscribe(() => {
