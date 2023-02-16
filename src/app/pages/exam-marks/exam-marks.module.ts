@@ -10,12 +10,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialModules = [
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule,
   MatInputModule,
+  MatDialogModule
 ]
 
 @NgModule({

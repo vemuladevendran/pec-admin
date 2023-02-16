@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { StudentService } from 'src/app/services/student/student.service';
 import { SubjectService } from 'src/app/services/subject/subject.service';
+import { SubjectsCardComponent } from '../subjects-card/subjects-card.component';
 
 @Component({
   selector: 'app-upload-marks',
@@ -25,6 +27,8 @@ export class UploadMarksComponent implements OnInit {
     private studentServe: StudentService,
     private subjectServe: SubjectService,
     private departmentServe: DepartmentService,
+    private dialog: MatDialog,
+
   ) {
     this.filtersForm = this.fb.group({
       departmentName: ['', Validators.required],
@@ -40,8 +44,6 @@ export class UploadMarksComponent implements OnInit {
     try {
       this.loader.show();
       this.studentsList = await this.studentServe.getStudents(this.filtersForm.value);
-      console.log(this.studentsList, '---------------');
-
       this.getSubjectList();
     } catch (error) {
       console.log(error);
@@ -55,7 +57,6 @@ export class UploadMarksComponent implements OnInit {
   async getSubjectList(): Promise<void> {
     try {
       this.subjectsList = await this.subjectServe.getDepartmentSubjects(this.filtersForm.value);
-      console.log(this.subjectsList, '============');
     } catch (error) {
       console.log(error);
       this.toast.error('fail to load subjects')
@@ -74,6 +75,18 @@ export class UploadMarksComponent implements OnInit {
     const semester = this.filtersForm.value.semester;
     this.examName = `semester-${semester}`
     this.filtersForm.controls['exam'].setValue(this.examName);
+  }
+
+
+  // open marks upload dialog
+  openMarksUpload(studentData: any) {
+    this.dialog.open(SubjectsCardComponent, {
+      data: {
+        data: studentData,
+        examData: this.filtersForm.value,
+        subjects: this.subjectsList
+      }
+    });
   }
 
   ngOnInit(): void {
