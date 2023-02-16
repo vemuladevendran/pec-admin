@@ -66,6 +66,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/notes/notes.module').then(m => m.NotesModule)
       },
       { path: 'announcement', loadChildren: () => import('./pages/announcement/announcement.module').then(m => m.AnnouncementModule) },
+      { path: 'exam-marks', loadChildren: () => import('./pages/exam-marks/exam-marks.module').then(m => m.ExamMarksModule) },
+
       {
         path: '**',
         redirectTo: '/teachers',

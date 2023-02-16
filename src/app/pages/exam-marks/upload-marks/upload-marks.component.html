@@ -1,0 +1,50 @@
+<div class="container">
+    <form class="row" [formGroup]="filtersForm" (ngSubmit)="getStudents()">
+        <!-- depatment, year and section selection -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="departmentName">
+                            <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                                {{ department.departmentName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year">
+                            <mat-option value="firstYear">First Year </mat-option>
+                            <mat-option value="secondYear">Second Year </mat-option>
+                            <mat-option value="thirdYear">Third Year </mat-option>
+                            <mat-option value="fourthYear">Fourth Year </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Semester</mat-label>
+                        <mat-select formControlName="semester" (selectionChange)="setExamName()">
+                            <mat-option [value]="s" *ngFor="let s of [1,2,3,4,5,6,7,8]">{{s}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Exam Name</mat-label>
+                        <input matInput placeholder="Exam Name" type="text" formControlName="exam" [value]="examName"
+                            readonly />
+                    </mat-form-field>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-primary" [disabled]="filtersForm.invalid">Search</button>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-3">
+
+    </form>
+</div>
