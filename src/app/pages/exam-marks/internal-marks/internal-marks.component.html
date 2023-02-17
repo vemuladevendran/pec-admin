@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row py-3">
+
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
+            <h2 class="m-0">Internal Marks</h2>
+        </div>
+        <hr>
+        <form class="row" [formGroup]="filtersForm">
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentName">
+                        <mat-option value="">All </mat-option>
+                        <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                            {{ department.departmentName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option value="">All </mat-option>
+                        <mat-option value="firstYear">First Year </mat-option>
+                        <mat-option value="secondYear">Second Year </mat-option>
+                        <mat-option value="thirdYear">Third Year </mat-option>
+                        <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Exam Name</mat-label>
+                    <mat-select formControlName="exam">
+                        <mat-option value="">All</mat-option>
+                        <mat-option value="internal-1">Internal 1</mat-option>
+                        <mat-option value="internal-2">Internal 2</mat-option>
+                        <mat-option value="internal-3">Internal 3</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        <!-- marks card -->
+        <h2 *ngIf="marksList.length === 0">No data found</h2>
+        <div class="col-12 col-md-4 col-lg-3 p-2 my-2" *ngFor="let m of marksList" (click)="showMarks(m.id)">
+            <div class="shadow p-3">
+                <h3 class="fw-bold text-center text-uppercase">{{m?.exam}}</h3>
+                <div class="overflow-auto">
+                    <span class="fw-bold text-uppercase">
+                        {{m?.departmentName}}</span>
+                    <span class="ms-2">{{m?.year}}</span>
+                </div>
+                <p>Semester : {{m?.semester}}</p>
+                <p>Subject : {{m?.subject}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="row py-3">
+        <!-- exam details -->
+        <div class="col-12">
+            <h1 class="text-center">PANIMALAR ENGINEERING COLLEGE</h1>
+            <h3 class="text-center text-uppercase">{{markDetails?.departmentName}}</h3>
+            <h3 class="text-center text-uppercase">{{markDetails?.exam}}</h3>
+            <div class="row">
+                <div class="col-4 text-center">Subject : {{markDetails?.subject}}</div>
+                <div class="col-4 text-center">Year : {{markDetails?.year}}</div>
+                <div class="col-4 text-center">Semester: {{markDetails?.semester}}</div>
+            </div>
+        </div>
+        <hr class="mt-3">
+
+        <!-- marks details -->
+        <div class="col-12 table-responsive mt-3" *ngIf="markDetails?.students.length > 0">
+            <table class="table table-hover border">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Exam Number</th>
+                        <th scope="col" class="text-center">Mark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let n of markDetails?.students; index as i"
+                        [ngClass]="n.marks < 50 ? 'bg-danger text-white' : ''">
+                        <th scope="row" class="text-center">{{i+1}}</th>
+                        <th class="text-center">{{n.studentName}}</th>
+                        <th class="text-center">{{n.examNumber}}</th>
+                        <th class="text-center">{{n.marks}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="my-4 text-end d-print-none">
+            <button class="btn btn-primary" (click)="printMarks()">Print Marks</button>
+        </div>
+    </div>
+</div>

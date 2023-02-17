@@ -1,1 +1,34 @@
-<p>subjects-card works!</p>
+<div class="container">
+    <form class="row" [formGroup]="marksForm" (ngSubmit)="handleSubmit()">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <p class="fw-bold">{{studentData?.studentName}}</p>
+                <p class="fw-bold">{{studentData?.examNumber}}</p>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover border">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Subject Name</th>
+                            <th scope="col" class="text-center">Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="subjects">
+                        <tr *ngFor="let s of subjectsList; index as i" [formGroupName]="i">
+                            <th scope="row" class="text-center">{{i+1}}</th>
+                            <td class="text-center">{{s}}</td>
+                            <td class="text-center">
+                                <input type="number" min="0" max="100" formControlName="mark" class="py-2">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" [disabled]="marksForm.invalid">Save Marks</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -11,20 +11,28 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { InternalMarksComponent } from './internal-marks/internal-marks.component';
+import { ShowMarksComponent } from './show-marks/show-marks.component';
 
 const materialModules = [
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatExpansionModule,
+  MatIconModule,
 ]
 
 @NgModule({
   declarations: [
     ExamMarksComponent,
     UploadMarksComponent,
-    SubjectsCardComponent
+    SubjectsCardComponent,
+    InternalMarksComponent,
+    ShowMarksComponent
   ],
   imports: [
     CommonModule,

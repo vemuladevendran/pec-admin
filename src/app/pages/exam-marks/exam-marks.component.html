@@ -3,11 +3,91 @@
         <div class="d-flex justify-content-between flex-wrap align-items-center mb-4">
             <h2 class="m-0">Exam Marks</h2>
             <div>
-                <button class="btn btn-primary btn-sm rounded shadow m-0 text-white" routerLink="upload">
-                    upload marks
+                <button class="btn btn-warning btn-sm rounded shadow m-0 mt-2 me-3 text-white" routerLink="internal">
+                    Show Internal Marks
+                </button>
+                <button class="btn btn-primary btn-sm rounded shadow m-0 mt-2 text-white" routerLink="upload">
+                    upload Semester marks
                 </button>
             </div>
         </div>
         <hr>
+        <!-- filters form -->
+        <form class="row" [formGroup]="filtersForm">
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentName">
+                        <mat-option value="">All </mat-option>
+                        <mat-option *ngFor="let department of departmentList" [value]="department.departmentName">
+                            {{ department.departmentName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option value="">All </mat-option>
+                        <mat-option value="firstYear">First Year </mat-option>
+                        <mat-option value="secondYear">Second Year </mat-option>
+                        <mat-option value="thirdYear">Third Year </mat-option>
+                        <mat-option value="fourthYear">Fourth Year </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Exam Name</mat-label>
+                    <mat-select formControlName="exam">
+                        <mat-option value="">All</mat-option>
+                        <mat-option [value]="'semester-' + s"
+                            *ngFor="let s of [1,2,3,4,5,6,7,8]">semester-{{s}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        <!-- marks table -->
+        <h2 *ngIf="marksList.length === 0" class="text-center">No data found</h2>
+        <div class="col-12">
+            <mat-accordion class="ms-3" *ngFor="let l of marksList; index as i">
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fw-bold">
+                            <div class="row justify-content-around align-items-center w-100">
+                                <div class="col-3">{{l.studentName }}</div>
+                                <div class="col-3">{{l.examNumber }}</div>
+                                <div class="col-2">{{l.exam}}</div>
+                                <div class="col-3">{{l.departmentName }}</div>
+                                <div class="col-1 text-center cursor-pointer" (click)="deleteMarks(l.id)">
+                                    <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
+                                        class="text-danger">delete</mat-icon>
+                                </div>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col" class="text-center">Subject</th>
+                                    <th scope="col" class="text-center">Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of l.subjects; index as i"
+                                    [ngClass]="s.mark < 50 ? 'bg-danger' : 'bg-light'">
+                                    <th scope="row" class="text-center">{{i+1}}</th>
+                                    <td class="text-center">{{s.subjectName}}</td>
+                                    <td class="text-center">{{s.mark}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
     </div>
 </div>

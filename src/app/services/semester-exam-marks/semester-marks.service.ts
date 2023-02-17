@@ -6,7 +6,8 @@ import { SettingsService } from '../settings/settings.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ExamMarksService {
+export class SemesterMarksService {
+
   constructor(
     private http: HttpClient,
     private settings: SettingsService,
@@ -29,4 +30,16 @@ export class ExamMarksService {
     const url = `${this.settings.API_BASE_URL}/semester-marks/${id}`;
     return lastValueFrom(this.http.delete(url));
   };
+  
+  getMarks(filters?: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/internal-marks`;
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
+  }
+
+  getMarksById(id: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/internal-marks/${id}`;
+    return lastValueFrom(this.http.get(url));
+  }
 }
