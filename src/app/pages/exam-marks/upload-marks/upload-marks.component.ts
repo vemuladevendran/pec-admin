@@ -32,7 +32,7 @@ export class UploadMarksComponent implements OnInit {
   ) {
     this.filtersForm = this.fb.group({
       departmentName: ['', Validators.required],
-      year: ['', Validators.required],
+      // year: ['', Validators.required],
       semester: ['', Validators.required],
       exam: ['', Validators.required],
     })
