@@ -46,6 +46,7 @@ export class AddStudentComponent implements OnInit {
       dob: ['', [Validators.required]],
       department: ['', [Validators.required]],
       year: ['', [Validators.required]],
+      mentor: ['', [Validators.required]],
       section: ['', [Validators.required]],
       semester: ['', [Validators.required]],
       email: ['', [Validators.required]],
