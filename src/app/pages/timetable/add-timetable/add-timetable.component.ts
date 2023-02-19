@@ -6,6 +6,7 @@ import { DepartmentService } from 'src/app/services/department/department.servic
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { SubjectService } from 'src/app/services/subject/subject.service';
 import { TimeTableService } from 'src/app/services/time-table/time-table.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-add-timetable',

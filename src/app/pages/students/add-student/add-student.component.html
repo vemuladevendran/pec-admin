@@ -79,6 +79,14 @@
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Mentor</mat-label>
+        <mat-select formControlName="mentor">
+          <mat-option [value]="m?.teacherName" *ngFor="let m of mentorList"> {{m?.teacherName}} </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-lg-4 my-2">
+      <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" email type="email" formControlName="email" />
       </mat-form-field>

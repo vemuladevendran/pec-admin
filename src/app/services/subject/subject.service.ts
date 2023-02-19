@@ -19,6 +19,13 @@ export class SubjectService {
     return lastValueFrom(this.http.get(url));
   }
 
+  getTimeTableSubjects(filters:any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/timeTableSubject`;
+    return lastValueFrom(this.http.get(url, {
+      params: filters,
+    }));
+  }
+
   // create subject
   createSubject(data: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/subject`;

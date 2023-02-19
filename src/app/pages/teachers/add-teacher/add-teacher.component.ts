@@ -37,7 +37,7 @@ export class AddTeacherComponent implements OnInit {
   ) {
     this.createTeacher = this.fb.group({
       teacherName: ['', Validators.required],
-      teacherTitle: ['', Validators.required],
+      // teacherTitle: ['', Validators.required],
       teacherId: ['', Validators.required],
       mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', Validators.required],
@@ -51,7 +51,6 @@ export class AddTeacherComponent implements OnInit {
 
   async handleSubmit(): Promise<void> {
     try {
-      console.log(this.selectedFile);
       // checking image file
       if (this.selectedFile !== undefined) {
         this.updateFormData();

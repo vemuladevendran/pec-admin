@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { StudentService } from 'src/app/services/student/student.service';
+import { TeacherService } from 'src/app/services/teacher/teacher.service';
 
 @Component({
   selector: 'app-add-student',
@@ -21,6 +22,7 @@ export class AddStudentComponent implements OnInit {
   departmentList: any = [];
   sectionList: any = [];
   semesterList: any = [];
+  mentorList:any = [];
   selectedDepartmentDetails: any;
   selectedDepartmentId = '';
   studentId = '';
@@ -35,6 +37,7 @@ export class AddStudentComponent implements OnInit {
     private studentServe: StudentService,
     private route: ActivatedRoute,
     private router: Router,
+    private teacherServe: TeacherService,
   ) {
     this.createStudent = this.fb.group({
       studentName: ['', [Validators.required]],
@@ -86,7 +89,10 @@ export class AddStudentComponent implements OnInit {
         })
         this.selectedDepartmentDetails = await this.departmentServe.getDepartmentById(this.selectedDepartmentId);
         this.sectionList = this.selectedDepartmentDetails.years[this.createStudent.value.year];
-      }
+      };
+      // getting staff list
+      this.mentorList = await this.teacherServe.getTeachers({department: name});
+      // getting semestre list
       const selectedYear = this.createStudent.value.year;
       switch (selectedYear) {
         case 'firstYear':
