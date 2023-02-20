@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { DepartmentService } from 'src/app/services/department/department.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 import { NotesService } from 'src/app/services/notes/notes.service';
 import Swal from 'sweetalert2';
 
@@ -22,6 +23,7 @@ export class NotesComponent implements OnInit {
     private departmentServe: DepartmentService,
     private toast: ToastrService,
     private notesServe: NotesService,
+    private loader: LoaderService,
   ) {
     this.filtersForm = this.fb.group({
       departmentName: [''],
@@ -48,11 +50,12 @@ export class NotesComponent implements OnInit {
   // get notes
   async getNotesList(filters: any): Promise<void> {
     try {
+      this.loader.show();
       this.notes = await this.notesServe.getNotes(filters);
-      console.log(this.notes, '-----------');
     } catch (error) {
       console.log(error);
-
+    }finally{
+      this.loader.hide();
     }
   }
 

@@ -19,7 +19,7 @@ export class StudentService {
     return lastValueFrom(this.http.get(url, {
       params: {
         ...filters,
-        page: page || 1
+        page: page || ''
       },
     }));
   }
