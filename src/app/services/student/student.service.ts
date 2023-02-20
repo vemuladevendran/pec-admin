@@ -14,15 +14,18 @@ export class StudentService {
   ) { }
 
   // get students
-  getStudents(filters?: any): Promise<any> {
+  getStudents(filters?: any, page?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/students`;
     return lastValueFrom(this.http.get(url, {
-      params: filters,
+      params: {
+        ...filters,
+        page: page || 1
+      },
     }));
   }
 
-   // get students
-   getStudentsByExamNumbers(filters?: any): Promise<any> {
+  // get students
+  getStudentsByExamNumbers(filters?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/students/examnumbers`;
     return lastValueFrom(this.http.get(url, {
       params: filters,

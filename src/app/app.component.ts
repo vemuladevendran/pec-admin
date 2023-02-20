@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { debounceTime } from 'rxjs';
 import { LoaderService } from './services/loader/loader.service';
-declare const loadFreshDesk: () => {};
+// declare const loadFreshDesk: () => {};
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,7 @@ export class AppComponent {
       });
 
     window.setTimeout(() => {
-      loadFreshDesk();
+      // loadFreshDesk();
     }, 3500);
   }
 }

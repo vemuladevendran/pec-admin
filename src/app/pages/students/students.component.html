@@ -14,7 +14,7 @@
       <div class="col-lg-3 col-md-4">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Department</mat-label>
-          <mat-select (selectionChange)="handleFilterChange()" formControlName="department">
+          <mat-select formControlName="department">
             <mat-option value="">All </mat-option>
             <mat-option *ngFor="let department of departments" [value]="department.departmentName">
               {{ department.departmentName }}
@@ -25,7 +25,7 @@
       <div class="col-lg-3 col-md-4">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Year</mat-label>
-          <mat-select (selectionChange)="handleFilterChange()" formControlName="year">
+          <mat-select formControlName="year">
             <mat-option value="">All </mat-option>
             <mat-option value="firstYear">First Year </mat-option>
             <mat-option value="secondYear">Second Year </mat-option>
@@ -63,4 +63,9 @@
       <app-student-card [student]="student" (deleteStudentId)="deleteStudent($event)"></app-student-card>
     </div>
   </section>
+</div>
+
+<div class="d-flex justify-content-center">
+  <mat-paginator [length]="totalCount" [pageSize]="12" (page)="handlePage($event)" aria-label="Select page">
+  </mat-paginator>
 </div>

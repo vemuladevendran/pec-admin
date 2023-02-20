@@ -4,7 +4,7 @@
         <div class="col-12 col-lg-6 d-lg-flex p-3">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <img [src]="studentData?.photo === null ? '/assets/default-profile.png' : studentData?.photo"
+                    <img [src]="studentData?.photo  ? studentData?.photo : '/assets/default-profile.png' "
                         class="profile-img w-100" alt="Profile Photo">
                 </div>
                 <div class="col-12 col-lg-6 d-flex flex-column justify-content-center">

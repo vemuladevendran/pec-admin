@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, Subject } from 'rxjs';
 import { DepartmentService } from 'src/app/services/department/department.service';
@@ -17,12 +18,16 @@ export class StudentsComponent implements OnInit {
   departments: any[] = [];
   filtersForm: FormGroup;
   filters: any;
+  totalCount = 0;
+  page: any = 1;
+
   constructor(
     private studentServe: StudentService,
     private toast: ToastrService,
     private loader: LoaderService,
     private departmentServe: DepartmentService,
     private fb: FormBuilder,
+    private router: Router,
   ) {
     this.filtersForm = this.fb.group({
       department: [''],
@@ -34,21 +39,18 @@ export class StudentsComponent implements OnInit {
     this.filtersForm.valueChanges.pipe(debounceTime(800))
     .subscribe(() => {
       this.filters = this.filtersForm?.value;
-      this.getStudentDetails(this.filters);
+      this.getStudentDetails(this.filters, this.page);
     });
   }
 
-  // filters handling
-  handleFilterChange(): void {
-    this.filters = this.filtersForm?.value;
-    this.getStudentDetails(this.filters)
-  }
+  
 
-
-  async getStudentDetails(filters: any): Promise<void> {
+  async getStudentDetails(filters: any, page:any): Promise<void> {
     try {
       this.loader.show();
-      this.studentsList = await this.studentServe.getStudents(filters);
+      const data = await this.studentServe.getStudents(filters, page)
+      this.studentsList = data.data;
+      this.totalCount = data.count;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to Load')
@@ -83,7 +85,7 @@ export class StudentsComponent implements OnInit {
         const result = await this.studentServe.deleteStudent(e);
         console.log(result);
         this.toast.info(result);
-        this.getStudentDetails(this.filters);
+        this.getStudentDetails(this.filters, this.page);
       } catch (error) {
         console.log(error, 'fail to delete');
         this.toast.error('fail to delete')
@@ -91,8 +93,21 @@ export class StudentsComponent implements OnInit {
     }
   }
 
+  // handle page
+  handlePage(event: any): void {
+    this.page = event.pageIndex + 1;
+    this.router.navigate([], {
+      queryParams: {
+        page: this.page,
+      }
+    }
+    )
+    this.getStudentDetails(this.filters, this.page);
+  }
+
+
   ngOnInit(): void {
-    this.getStudentDetails(this.filters);
+    this.getStudentDetails(this.filters, this.page);
     this.getDepartmentList();
   }
 }

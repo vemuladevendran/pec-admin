@@ -67,11 +67,12 @@ export class TakeAttendanceComponent implements OnInit {
   async getStudents(): Promise<void> {
     try {
       this.loaderServe.show();
-      this.studentsList = await this.studentServe.getStudents({
+      const data = await this.studentServe.getStudents({
         departmentName: this.attendanceForm.value.departmentName,
         year: this.attendanceForm.value.year,
         section: this.attendanceForm.value.section,
       });
+      this.studentsList = data?.data;
       this.getPeriods();
       this.createAttendanceList();
     } catch (error: any) {

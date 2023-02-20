@@ -180,13 +180,12 @@ export class AddStudentComponent implements OnInit {
       }
       this.loader.show();
       const data = await this.studentServe.getStudentById(this.studentId);
-      if (data.photo !== null) {
+      if (data.photo) {
         this.selectedImagePreviewURL = data?.photo;
       }
       // applying update values to form
       this.createStudent.patchValue(data);
       await this.getDepartmentDetails();
-      console.log(data);
     } catch (error) {
       this.toast.error('fail to get details')
     } finally {

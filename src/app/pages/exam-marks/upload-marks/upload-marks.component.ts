@@ -43,7 +43,8 @@ export class UploadMarksComponent implements OnInit {
   async getStudents(): Promise<void> {
     try {
       this.loader.show();
-      this.studentsList = await this.studentServe.getStudents(this.filtersForm.value);
+      const data = await this.studentServe.getStudents(this.filtersForm.value);
+      this.studentsList = data?.data;
       this.getSubjectList();
     } catch (error) {
       console.log(error);
