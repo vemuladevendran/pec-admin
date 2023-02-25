@@ -11,7 +11,7 @@
         <!-- card details -->
         <div class="col-12 col-md-4 col-lg-3" *ngFor="let a of detailsList">
             <div class="card w-100">
-                <img [src]="a.image" class="card-img-top img-an" alt="Announcement">
+                <img [src]="a.image" decoding="async" loading="lazy" class="card-img-top img-an" alt="Announcement">
                 <div class="card-body">
                     <h2 class="card-title">{{a?.title}}</h2>
                     <div class="mb-2">

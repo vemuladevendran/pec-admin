@@ -2,7 +2,7 @@
   (click)="viewStudent(student?.id)">
   <div>
     <div class="position-absolute top-0 start-50 translate-middle">
-      <img [src]="student.photo ? student.photo: '/assets/default-profile.png' " width="90" alt="student-image"
+      <img [src]="student.photo ? student.photo: '/assets/default-profile.png' " decoding="async" loading="lazy" width="90" alt="student-image"
         class="img-fluid rounded-circle img-thumbnail shadow-md" />
     </div>
     <div class="card-body mt-4 pb-0">

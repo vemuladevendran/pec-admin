@@ -34,7 +34,7 @@
         (click)="openDialog($event,teacher)">
         <div class="position-absolute top-0 start-50 translate-middle">
           <img [src]="teacher.photo !== null ? teacher.photo : '/assets/default-profile.png'" width="90"
-            alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" />
+            alt="student-image" class="img-fluid rounded-circle img-thumbnail shadow-md" decoding="async" loading="lazy" />
         </div>
         <div class="card-body mt-4">
           <h3 class="card-title fw-bold mb-1 text-wrap text">

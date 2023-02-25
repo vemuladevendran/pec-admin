@@ -9,6 +9,7 @@ import { AppShellModule } from './components/app-shell/app-shell.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonComponentModule } from './components/common-components/common-component.module';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
+import { CacheInterceptor } from 'cache.interceptor';
 
 // HttpClientModule
 
@@ -28,12 +29,13 @@ import { AuthInterceptorService } from './services/auth/auth-interceptor.service
       progressBar: true,
     }),
   ],
- providers: [
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true,
-    }
-  ],  bootstrap: [AppComponent],
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
+  ], bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
