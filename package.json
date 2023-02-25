@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:dev": "ng build",
+    "build": "ng build --configuration production",
+    "deploy": "firebase deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
