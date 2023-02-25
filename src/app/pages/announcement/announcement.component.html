@@ -14,7 +14,7 @@
                 <img [src]="a.image" decoding="async" loading="lazy" class="card-img-top img-an" alt="Announcement">
                 <div class="card-body">
                     <h2 class="card-title">{{a?.title}}</h2>
-                    <div class="mb-2">
+                    <div class="mb-2" style="height: 4rem; overflow: auto;">
                         <a [href]="a.url" target="_blank" class="card-text">{{a?.url}}</a>
                     </div>
                     <button class="btn btn-danger" (click)="delete(a.id)">Delete</button>
