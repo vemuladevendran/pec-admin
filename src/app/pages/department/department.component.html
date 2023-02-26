@@ -32,7 +32,11 @@
                         <td class="text-center">{{l.departmentHod}}</td>
                         <td class="text-center">
                             <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Delete"
-                                class="text-danger cursor-pointer" (click)="deleteDepartment($event,l.id)">delete</mat-icon>
+                                class="text-danger cursor-pointer"
+                                (click)="deleteDepartment($event,l.id)">delete</mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Edit" matTooltip="Edit"
+                                class="text-primary cursor-pointer ms-3"
+                                (click)="updateDepartment($event,l.id)">edit</mat-icon>
                         </td>
                     </tr>
                 </tbody>

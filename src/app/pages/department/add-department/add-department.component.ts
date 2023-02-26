@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -22,7 +22,7 @@ export class AddDepartmentComponent implements OnInit {
   hodList: any[] = [];
   teachersList: any[] = [];
   sections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-
+  departmentId = '';
   constructor(
     private fb: FormBuilder,
     private toast: ToastrService,
@@ -30,7 +30,9 @@ export class AddDepartmentComponent implements OnInit {
     private departmentServe: DepartmentService,
     private router: Router,
     private teacherServe: TeacherService,
+    private route: ActivatedRoute,
   ) {
+    this.departmentId = this.route.snapshot.paramMap.get('id') || '';
     this.createDepartment = this.fb.group({
       departmentName: ['', [Validators.required]],
       departmentCode: ['', [Validators.required]],
@@ -265,8 +267,13 @@ export class AddDepartmentComponent implements OnInit {
   async handleSubmit(): Promise<void> {
     try {
       const data = this.createDepartment.value;
-      console.log(data);
       this.loader.show();
+      if (this.departmentId !== '') {
+        await this.departmentServe.updateDepartment(data, this.departmentId);
+        this.toast.success('updated successfully');
+        this.router.navigate(["/department"]);
+        return;
+      }
       await this.departmentServe.createDepartment(data);
       this.toast.success('successfully created');
       this.router.navigate(["/department"]);
@@ -278,7 +285,23 @@ export class AddDepartmentComponent implements OnInit {
     }
   }
 
+
+  // update details
+  async getUpdateFormDetails(): Promise<void> {
+    try {
+      const id = this.departmentId;
+      if (id === '') {
+        return;
+      }
+      const data = await this.departmentServe.getDepartmentById(id);
+      this.createDepartment.patchValue(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   ngOnInit(): void {
+    this.getUpdateFormDetails();
     this.getHodList();
     this.getTeachersList();
   }

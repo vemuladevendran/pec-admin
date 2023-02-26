@@ -2,16 +2,10 @@
   <h2 class="fw-bolder">Profile</h2>
 
   <div class="text-center my-4">
-    <img
-      src="/assets/default-profile.png"
-      width="90"
-      alt="student-image"
-      class="img-fluid rounded-circle img-thumbnail shadow-md"
-    />
+    <img src="/assets/default-profile.png" width="90" alt="student-image"
+      class="img-fluid rounded-circle img-thumbnail shadow-md" />
     <p>
-      <label class="h6 text-primary my-2" role="button" for="profile-file"
-        >Change Profile Image</label
-      >
+      <label class="h6 text-primary my-2" role="button" for="profile-file">Change Profile Image</label>
       <input type="file" class="d-none" id="profile-file" />
     </p>
   </div>
@@ -19,61 +13,32 @@
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" type="text" formControlName="name" />
+        <input matInput placeholder="Name" type="text" readonly formControlName="name" />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Department</mat-label>
-        <input
-          matInput
-          placeholder="Department"
-          type="text"
-          formControlName="department"
-        />
+        <input matInput placeholder="Department" type="text" formControlName="department" readonly />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          placeholder="Email"
-          type="email"
-          formControlName="email"
-        />
+        <input matInput placeholder="Email" type="email" formControlName="email" readonly />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-4 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Phone No</mat-label>
-        <input
-          matInput
-          placeholder="Phone No"
-          type="number"
-          formControlName="phoneNumber"
-        />
+        <input matInput placeholder="Phone No" type="number" formControlName="phoneNumber" readonly />
       </mat-form-field>
     </div>
     <div class="col-md-6 col-lg-6 my-2">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Address</mat-label>
-        <textarea
-          matInput
-          placeholder="Address"
-          formControlName="address"
-        ></textarea>
+        <textarea matInput placeholder="Address" formControlName="address" readonly></textarea>
       </mat-form-field>
-    </div>
-    <div class="d-flex justify-content-end flex-wrap">
-      <div>
-        <button
-          class="btn btn-primary btn-sm rounded shadow"
-          [disabled]="profile.invalid"
-        >
-          Update Profile
-        </button>
-      </div>
     </div>
   </form>
 
@@ -84,15 +49,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" required />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-          class="border-0 bg-white"
-          type="button"
-        >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide" class="border-0 bg-white" type="button">
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
       </mat-form-field>

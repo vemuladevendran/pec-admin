@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -14,6 +15,7 @@ export class DepartmentComponent implements OnInit {
     private departmentServe: DepartmentService,
     private loader: LoaderService,
     private toast: ToastrService,
+    private router: Router,
   ) { }
 
   // getting department list
@@ -52,6 +54,11 @@ export class DepartmentComponent implements OnInit {
         this.loader.hide();
       }
     }
+  }
+
+  updateDepartment(event: any, id: string) {
+    event.stopPropagation();
+    this.router.navigate([`department/add-department/${id}`])
   }
 
   ngOnInit(): void {

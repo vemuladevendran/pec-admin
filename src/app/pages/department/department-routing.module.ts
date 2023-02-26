@@ -8,6 +8,7 @@ import { ViewDepartmentComponent } from './view-department/view-department.compo
 const routes: Routes = [
   { path: '', component: DepartmentComponent },
   { path: 'add-department', component: AddDepartmentComponent },
+  { path: 'add-department/:id', component: AddDepartmentComponent },
   { path: 'view-department/:id', component: ViewDepartmentComponent }
 ];
 

@@ -23,6 +23,11 @@ export class DepartmentService {
     return lastValueFrom(this.http.post(url, data));
   }
 
+  updateDepartment(data: any, id: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/department/${id}`;
+    return lastValueFrom(this.http.put(url, data));
+  }
+
   // get department list
 
   getDepartmentDetails(): Promise<any> {
@@ -45,9 +50,9 @@ export class DepartmentService {
   }
 
   // get sections
-  getSections(departmentName:any, year: string): Promise<any> {
+  getSections(departmentName: any, year: string): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/department/sections/${departmentName}/${year}`;
-     const data = lastValueFrom(this.http.get(url));
-     return data;
+    const data = lastValueFrom(this.http.get(url));
+    return data;
   }
 }

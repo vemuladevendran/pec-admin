@@ -18,14 +18,6 @@ export class ViewDepartmentComponent implements OnInit {
   fourthYear: any[] = [];
   studentsCount = [];
   totalStudents: any;
-  classStudentsList = [
-    {
-      rollNumber: '57648584',
-      examNumber: '57648584',
-      name: '57648584',
-      id: '485784'
-    }
-  ]
 
   constructor(
     private departmentServe: DepartmentService,
