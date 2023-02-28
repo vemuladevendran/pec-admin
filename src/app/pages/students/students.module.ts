@@ -17,6 +17,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewStudentComponent } from './view-student/view-student.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const materialModules = [
   MatIconModule,
@@ -28,7 +29,9 @@ const materialModules = [
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatExpansionModule,
+  MatIconModule,
 ]
 
 @NgModule({
