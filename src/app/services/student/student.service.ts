@@ -55,5 +55,13 @@ export class StudentService {
   deleteStudent(id: string): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/student/${id}`;
     return lastValueFrom(this.http.delete(url));
-  }
+  };
+
+   // reset  student password
+   resetPassword(examNumber: string): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/reset-password/student`;
+    return lastValueFrom(this.http.get(url, {
+      params: {examNumber},
+    }));
+  };
 }

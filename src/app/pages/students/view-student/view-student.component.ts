@@ -6,6 +6,7 @@ import { AttendanceService } from 'src/app/services/attendance/attendance.servic
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { SemesterMarksService } from 'src/app/services/semester-exam-marks/semester-marks.service';
 import { StudentService } from 'src/app/services/student/student.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-student',
@@ -90,6 +91,31 @@ export class ViewStudentComponent implements OnInit {
       console.log(error);
       this.toast.error('Fail to load')
     };
+  };
+
+
+  async resetPassword(): Promise<void> {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "Confirm before resetting the password",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
+    if (result.isConfirmed) {
+      try {
+        this.loader.show();
+        await this.studentServe.resetPassword(this.studentData?.examNumber);
+        this.toast.success("Password reset successfull");
+      } catch (error) {
+        console.log(error);
+        this.toast.error("Fail to reset");
+      } finally {
+        this.loader.hide();
+      }
+    }
   }
 
   ngOnInit(): void {

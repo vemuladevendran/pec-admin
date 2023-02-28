@@ -11,21 +11,25 @@
                     <p>Name : <span class="fw-bold">{{studentData?.studentName}}</span></p>
                     <p>Roll Number : <span class="fw-bold">{{studentData?.rollNumber}}</span></p>
                     <p>Department : <span class="fw-bold">{{studentData?.department}}</span></p>
+                    <hr>
+                    <div class="text-center">
+                       <button class="btn btn-danger" (click)="resetPassword()">Reset Password</button> 
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-6 position-relative shadow-lg mt-2 mt-lg-0">
             <h2 class="text-center">Personal Detail</h2>
-            <p>Roll Number : <span class="fw-bold">{{studentData?.rollNumber}}</span></p>
-            <p>Exam Number : <span class="fw-bold">{{studentData?.examNumber}}</span></p>
-            <p>Mentor : <span class="fw-bold">{{studentData?.mentor}}</span></p>
-            <p>DOB : <span class="fw-bold">{{studentData?.dob | date}}</span></p>
-            <p>Section : <span class="fw-bold">{{studentData?.section}}</span></p>
-            <p>Email : <span class="fw-bold">{{studentData?.email}}</span></p>
-            <p>Year : <span class="fw-bold">{{studentData?.year}}</span></p>
-            <p>Semester : <span class="fw-bold">{{studentData?.semester}}</span></p>
-            <p>Mobile Number : <span class="fw-bold">{{studentData?.mobileNumber}}</span></p>
-            <p>Address : <span class="fw-bold">{{studentData?.address}} </span></p>
+            <p class="py-1">Roll Number : <span class="fw-bold">{{studentData?.rollNumber}}</span></p>
+            <p class="py-1">Exam Number : <span class="fw-bold">{{studentData?.examNumber}}</span></p>
+            <p class="py-1">Mentor : <span class="fw-bold">{{studentData?.mentor}}</span></p>
+            <p class="py-1">DOB : <span class="fw-bold">{{studentData?.dob | date}}</span></p>
+            <p class="py-1">Section : <span class="fw-bold">{{studentData?.section}}</span></p>
+            <p class="py-1">Email : <span class="fw-bold">{{studentData?.email}}</span></p>
+            <p class="py-1">Year : <span class="fw-bold">{{studentData?.year}}</span></p>
+            <p class="py-1">Semester : <span class="fw-bold">{{studentData?.semester}}</span></p>
+            <p class="py-1">Mobile Number : <span class="fw-bold">{{studentData?.mobileNumber}}</span></p>
+            <p class="py-1">Address : <span class="fw-bold">{{studentData?.address}} </span></p>
         </div>
     </div>
     <hr class="my-5">
