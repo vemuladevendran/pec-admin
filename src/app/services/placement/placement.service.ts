@@ -18,6 +18,11 @@ export class PlacementService {
     return lastValueFrom(this.http.post(url, data));
   };
 
+  updateStatus(id: any, data: any): Promise<any> {
+    const url = `${this.settings.API_BASE_URL}/placement/${id}`;
+    return lastValueFrom(this.http.put(url, data));
+  };
+
   getPlacementDetails(filters?: any): Promise<any> {
     const url = `${this.settings.API_BASE_URL}/placement`;
     return lastValueFrom(this.http.get(url, {

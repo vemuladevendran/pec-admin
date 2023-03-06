@@ -17,7 +17,7 @@ export class PlacementComponent implements OnInit {
   placementDetails: any[] = [];
   filters = {};
   filtersForm: FormGroup;
-  departments:any;
+  departments: any;
   constructor(
     private loader: LoaderService,
     private toast: ToastrService,
@@ -63,15 +63,30 @@ export class PlacementComponent implements OnInit {
     }
   };
 
-    // get department
-    async getDepartments(): Promise<void> {
-      try {
-        this.departments = await this.departmentServe.getDepartmentDetails();
-      } catch (error: any) {
-        console.log(error);
-        this.toast.error(error?.error.message);
-      }
+  // get department
+  async getDepartments(): Promise<void> {
+    try {
+      this.departments = await this.departmentServe.getDepartmentDetails();
+    } catch (error: any) {
+      console.log(error);
+      this.toast.error(error?.error.message);
     }
+  };
+
+
+  async updateStatus(id: any, e: any): Promise<void> {
+    try {
+      this.loader.show();
+      await this.placementServe.updateStatus(id, { jobStatus: e.target.value });
+      this.getPlacementDetails(this.filters);
+      this.toast.info("Status Updated");
+    } catch (error) {
+      console.log(error);
+      this.toast.error('Fail to update status');
+    } finally {
+      this.loader.hide();
+    }
+  }
 
   ngOnInit(): void {
     this.getDepartments();

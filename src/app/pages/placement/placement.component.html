@@ -40,6 +40,7 @@
                         <th scope="col">Company Name</th>
                         <th scope="col">Attending Date</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Update Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,13 @@
                         <td class="text-primary" *ngIf="p?.jobStatus === 'onprocess'">On process</td>
                         <td class="text-danger" *ngIf="p?.jobStatus === 'rejected'">Rejected</td>
                         <td class="text-success" *ngIf="p?.jobStatus === 'offered'">Offered</td>
+                        <td>
+                            <select name="status" [value]="p?.jobStatus" (change)="updateStatus(p?.id, $event)">
+                                <option value="onprocess">On Process</option>
+                                <option value="offered">Offered</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </td>
                     </tr>
                 </tbody>
             </table>
