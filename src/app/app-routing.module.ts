@@ -67,6 +67,7 @@ const routes: Routes = [
       },
       { path: 'announcement', loadChildren: () => import('./pages/announcement/announcement.module').then(m => m.AnnouncementModule) },
       { path: 'exam-marks', loadChildren: () => import('./pages/exam-marks/exam-marks.module').then(m => m.ExamMarksModule) },
+      { path: 'placement', loadChildren: () => import('./pages/placement/placement.module').then(m => m.PlacementModule) },
 
       {
         path: '**',

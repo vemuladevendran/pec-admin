@@ -8,6 +8,7 @@ export const menuItems = [
     ['newspaper', 'Notes', ['/notes']],
     ['campaign', 'Announcement', ['/announcement']],
     ['campaign', 'Exam Marks', ['/exam-marks']],
+    ['work', 'Placement Details', ['/placement']],
     ['summarize', 'Admins', ['/admin']],
     ['account_circle', 'Profile', ['/profile']],
 ].map(([icon, text, path]) => ({ icon, text, path }));

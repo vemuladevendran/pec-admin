@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AssignmentsService } from 'src/app/services/assignments/assignments.service';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { PlacementService } from 'src/app/services/placement/placement.service';
 import { SemesterMarksService } from 'src/app/services/semester-exam-marks/semester-marks.service';
 import { StudentService } from 'src/app/services/student/student.service';
 import Swal from 'sweetalert2';
@@ -20,7 +21,7 @@ export class ViewStudentComponent implements OnInit {
   assignmentDetails: any[] = [];
   marksData: any[] = [];
   semesterMarksDetails: any[] = [];
-
+  placementDetails: any[] = [];
   constructor(
     private studentServe: StudentService,
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ViewStudentComponent implements OnInit {
     private attendanceServe: AttendanceService,
     private assignmentServe: AssignmentsService,
     private marksServe: SemesterMarksService,
+    private placementServe: PlacementService,
   ) {
     this.studentId = this.route.snapshot.paramMap.get('id') ?? '';
   }
@@ -41,6 +43,7 @@ export class ViewStudentComponent implements OnInit {
       this.getAssignments();
       this.getInternalMarksData();
       this.getSemesterMarksData();
+      this.getPlacementDetails();
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to Load data');
@@ -65,7 +68,7 @@ export class ViewStudentComponent implements OnInit {
   async getAssignments(): Promise<void> {
     try {
       const data = await this.assignmentServe.getAssignments({ examNumber: this.studentData?.examNumber });
-      this.assignmentDetails = data[0].subjects;
+      this.assignmentDetails = data[0]?.subjects;
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to load')
@@ -90,6 +93,17 @@ export class ViewStudentComponent implements OnInit {
     } catch (error) {
       console.log(error);
       this.toast.error('Fail to load')
+    };
+  };
+
+  // get placement details
+
+  async getPlacementDetails(): Promise<void> {
+    try {
+      this.placementDetails = await this.placementServe.getPlacementDetails({ examNumber: this.studentData?.examNumber });
+    } catch (error) {
+      console.log(error);
+      this.toast.error('Fail to load placement details');
     };
   };
 
