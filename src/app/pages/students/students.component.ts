@@ -117,7 +117,7 @@ export class StudentsComponent implements OnInit {
       studentName: queryFilter['studentName'] || '',
       examNumber: queryFilter['examNumber'] || '',
     });
-    this.page = queryFilter['page'];
+    this.page = queryFilter['page'] || 1;
   };
 
 
