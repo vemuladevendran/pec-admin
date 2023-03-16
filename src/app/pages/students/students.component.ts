@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, Subject } from 'rxjs';
 import { DepartmentService } from 'src/app/services/department/department.service';
@@ -28,6 +28,7 @@ export class StudentsComponent implements OnInit {
     private departmentServe: DepartmentService,
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.filtersForm = this.fb.group({
       department: [''],
@@ -37,15 +38,16 @@ export class StudentsComponent implements OnInit {
       examNumber: [''],
     });
     this.filtersForm.valueChanges.pipe(debounceTime(800))
-    .subscribe(() => {
-      this.filters = this.filtersForm?.value;
-      this.getStudentDetails(this.filters, this.page);
-    });
+      .subscribe(() => {
+        this.filters = this.filtersForm?.value;
+        this.router.navigate(['/students'], { queryParams: { ...this.filtersForm?.value, page: this.page } })
+        this.getStudentDetails(this.filters, this.page);
+      });
   }
 
-  
 
-  async getStudentDetails(filters: any, page:any): Promise<void> {
+
+  async getStudentDetails(filters: any, page: any): Promise<void> {
     try {
       this.loader.show();
       const data = await this.studentServe.getStudents(filters, page)
@@ -103,10 +105,26 @@ export class StudentsComponent implements OnInit {
     }
     )
     this.getStudentDetails(this.filters, this.page);
-  }
+  };
+
+
+  // initial filters
+  getInitialFilters(queryFilter: Params): void {
+    this.filtersForm.setValue({
+      department: queryFilter['department'] || '',
+      year: queryFilter['year'] || '',
+      rollNumber: queryFilter['rollNumber'] || '',
+      studentName: queryFilter['studentName'] || '',
+      examNumber: queryFilter['examNumber'] || '',
+    });
+    this.page = queryFilter['page'];
+  };
 
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.getInitialFilters(params);
+    });
     this.getStudentDetails(this.filters, this.page);
     this.getDepartmentList();
   }
